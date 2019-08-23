@@ -4,4 +4,4 @@
 
 (defn index [request]
   [:h1 {:class "tc"}
-   "You're coasting on clojure!"])
+   "Clojure/Walk"])
