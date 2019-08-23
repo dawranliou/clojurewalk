@@ -15,6 +15,9 @@ repl:
 assets:
 	clj -m coast.assets
 
+build: assets
+	clj -A\:build -m package
+
 server:
 	clj -m server
 
