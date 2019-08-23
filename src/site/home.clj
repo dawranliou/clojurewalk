@@ -3,5 +3,7 @@
 
 
 (defn index [request]
-  [:h1 {:class "tc"}
-   "Clojure/Walk"])
+  [:div
+   [:h1 {:class "tc"}
+    "Clojure/Walk"]
+   [:p.tc "Comming soon!"]])
