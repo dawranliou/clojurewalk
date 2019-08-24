@@ -6,4 +6,4 @@
   [:div
    [:h1 {:class "tc"}
     "Clojure/Walk"]
-   [:p.tc "Comming soon!"]])
+   [:p.tc "Coming soon!"]])
