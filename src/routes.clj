@@ -7,7 +7,8 @@
 
     (coast/site
       (coast/with-layout components/layout
-        [:get "/" :site.home/index]))
+        [:get "/" :site.home/index]
+        [:resource :video]))
 
     (coast/api
       (coast/with-prefix "/api"
