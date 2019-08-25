@@ -4,7 +4,7 @@ test:
 	COAST_ENV=test clj -A\:test
 
 clean:
-	rm -rf target/*
+	rm -rf target/* resources/assets.minified.edn resources/public/assets/
 
 uberjar:
 	clj -A\:uberjar
@@ -15,8 +15,7 @@ repl:
 assets:
 	clj -m coast.assets
 
-build: assets
-	clj -A\:build -m package
+build: assets uberjar
 
 server:
 	clj -m server
