@@ -7,4 +7,4 @@
   (fn [request]
     (if (get-in request [:session :admin])
       (handler request)
-      (coast/unauthorized "HAL9000 says: I'm sorry Dave, I can't let you do that"))))
+      (coast/redirect-to :admin/build))))

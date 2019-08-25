@@ -3,7 +3,7 @@
 
 
 (defn index [request]
-  [:div
+  [:div.pa4.w-100.center.mw8
    [:h1 {:class "tc"}
     "Clojure/Walk"]
    [:p.tc "Coming soon!"]])
