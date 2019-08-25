@@ -10,13 +10,14 @@
       (coast/with-layout components/layout
         [:get "/" :site.home/index]
 
-        (coast/with-prefix "/admin"
-          [:get "/sign-in" :admin/build]
-          [:post "/sign-in" :admin/create]
-          (coast/with middleware/auth
-                      [:get "/dashboard" :admin/dashboard]
-                      [:resource :video]
-                      [:post "/sign-out" :admin/delete]))))
+        [:get "/admin/sign-in" :admin/build]
+        [:post "/admin/sign-in" :admin/create]
+
+        (coast/with
+          middleware/auth
+          [:resource :video]
+          [:get "/admin" :admin/dashboard]
+          [:post "/admin/sign-out" :admin/delete])))
 
     (coast/api
       (coast/with-prefix "/api"

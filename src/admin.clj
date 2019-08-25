@@ -28,8 +28,9 @@
 
 (defn delete
   [request]
+  (def r request)
   (-> (coast/redirect-to ::build)
-      (dissoc :session)))
+      (assoc :session nil)))
 
 (defn dashboard
   [request]
