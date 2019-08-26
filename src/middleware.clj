@@ -7,4 +7,4 @@
   (fn [request]
     (if (get-in request [:session :admin])
       (handler request)
-      (coast/redirect-to :admin/build))))
+      (coast/redirect-to :admin/sign-in))))

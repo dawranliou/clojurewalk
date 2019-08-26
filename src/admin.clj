@@ -11,7 +11,7 @@
    [:input.pa2.input-reset.ba.bg-transparent
     m]])
 
-(defn build
+(defn sign-in
   [request]
   [:div.pa4.w-100.center.mw8
    [:h1 "Admin"]
@@ -23,7 +23,7 @@
      (input {:type "password" :name "password"})
      (input {:type "submit" :value "Submit"}))])
 
-(defn create
+(defn create-session
   [request]
   (let [input  (:params request)
         uname  (env/env :admin-uname)
@@ -33,19 +33,18 @@
     (if valid?
       (-> (coast/redirect-to ::dashboard)
           (assoc :session {:admin true}))
-      (build (merge request {:error/message "Invalid username or password"})))))
+      (sign-in (merge request {:error/message "Invalid username or password"})))))
 
-(defn delete
+(defn delete-session
   [request]
-  (def r request)
-  (-> (coast/redirect-to ::build)
+  (-> (coast/redirect-to ::sign-in)
       (assoc :session nil)))
 
 (defn dashboard
   [request]
   [:div.pa4.w-100.center.mw8
    [:h1 "Dashboard"]
-   (coast/form-for ::delete
+   (coast/form-for ::delete-session
                    [:input {:type "submit" :value "Sign out"}])
    [:a.f6.link.underline.blue
     {:href (coast/url-for :video/index)}
