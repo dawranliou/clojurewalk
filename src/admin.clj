@@ -4,6 +4,23 @@
    [coast]
    [coast.env :as env]))
 
+(defn layout
+  [request body]
+  [:html
+   [:head
+    [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+    (coast/css "bundle.css")
+    (coast/js "bundle.js")]
+   [:body
+    [:nav.pa3.pa4-ns
+     [:a.link.black.dim.f6.f5-ns.dib.mr3
+      {:href (coast/url-for ::dashboard)}
+      "Home"]
+     [:a.link.black.dim.f6.f5-ns.dib.mr3
+      {:href (coast/url-for :video/index)}
+      "Videos"]]
+    body]])
+
 (defn input
   [{:keys [type name] :as m}]
   [:div.mv3

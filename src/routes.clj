@@ -1,14 +1,17 @@
 (ns routes
   (:require [coast]
             [components]
-            [middleware]))
+            [middleware]
+            [admin]))
 
 (def routes
   (coast/routes
 
     (coast/site
       (coast/with-layout components/layout
-        [:get "/" :site.home/index]
+        [:get "/" :site.home/index])
+
+      (coast/with-layout admin/layout
 
         [:get "/admin/sign-in" :admin/sign-in]
         [:post "/admin/sign-in" :admin/create-session]
