@@ -7,6 +7,7 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
     [:link {:rel= "short icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel= "icon" :type "image/x-icon" :href "/favicon.ico"}]
+    [:link {:href "https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300&display=swap" :rel "stylesheet"}]
     (coast/css "bundle.css")
     (coast/js "bundle.js")]
    [:body

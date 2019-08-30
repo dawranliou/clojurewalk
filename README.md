@@ -33,3 +33,11 @@ make assets
 make uberjar
 java -jar target/clojurewalk.jar 1337
 ```
+
+## Design
+
+Colors:
+
+* White #ececec
+* Green #62b146
+* Black #2c2c2c
