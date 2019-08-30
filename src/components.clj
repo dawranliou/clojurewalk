@@ -4,6 +4,8 @@
 (defn layout [request body]
   [:html
    [:head
+    [:title "Clojure/Walk"]
+    [:meta {:name "description" :content "Clojure tutorials and resources."}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
     [:link {:rel= "short icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel= "icon" :type "image/x-icon" :href "/favicon.ico"}]
