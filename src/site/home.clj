@@ -30,4 +30,5 @@
            :let [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
        [:div.tc.mv5
         [:h2 title]
-        [:img {:src link}]])]]])
+        [:img {:alt (str "The thumbnail of " title)
+               :src link}]])]]])
