@@ -1,6 +1,6 @@
 (ns routes
   (:require [coast]
-            [components]
+            [layouts]
             [middleware]
             [admin]))
 
@@ -8,7 +8,7 @@
   (coast/routes
 
     (coast/site
-      (coast/with-layout components/layout
+      (coast/with-layout layouts/layout
         [:get "/" :site.home/index]
         [:get "/vids/:youtubeid" :site.video/index])
 
