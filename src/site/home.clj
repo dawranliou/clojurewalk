@@ -16,8 +16,9 @@
 
           :let [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
       [:div.tc.mv5
-       [:a.link.dim
-        {:href (coast/url-for :site.video/index {:youtubeid youtubeid})}
-        [:h2.black-cw title]]
+       [:h2
+        [:a.link.dim.black-cw
+         {:href (coast/url-for :site.video/index {:youtubeid youtubeid})}
+         title]]
        [:img {:alt (str "The thumbnail of " title)
               :src link}]])]])
