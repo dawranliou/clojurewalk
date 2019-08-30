@@ -26,5 +26,6 @@
       (coast/js "bundle.js")
       [:body.bg-black-cw
        (components/navbar)
-       body
+       [:main.pt5.bg-white-cw
+        body]
        (components/footer)]]]))
