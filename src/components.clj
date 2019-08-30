@@ -12,7 +12,7 @@
     [:meta {:property "og:url" :content "https://clojurewalk.com"}]
     [:meta {:property "og:title" :content "Clojure/Walk"}]
     [:meta {:property "og:description" :content "Clojure tutorials and resources."}]
-    [:meta {:property "og:image" :content "https://clojurewalk.com/assets/img/logo-with-text.png"}]
+    [:meta {:property "og:image" :content "https://clojurewalk.com/assets/img/ClojureWalkLogoSquareBlack.png"}]
     [:link {:rel= "short icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel= "icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:href "https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300&display=swap" :rel "stylesheet"}]
