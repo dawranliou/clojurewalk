@@ -9,7 +9,8 @@
 
     (coast/site
       (coast/with-layout components/layout
-        [:get "/" :site.home/index])
+        [:get "/" :site.home/index]
+        [:get "/vids/:youtubeid" :site.video/index])
 
       (coast/with-layout admin/layout
 

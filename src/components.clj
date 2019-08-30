@@ -2,6 +2,21 @@
   (:require [coast]
             [hiccup.page :refer [doctype]]))
 
+(defn navbar
+  []
+  [:nav.w-100.tc.white.fixed.bg-black-cw.z-3.shadow-5
+   [:ul.overflow-hidden.menu.db-l.w-100.list.tc.pl0.pt3.mv0.f3.fw3.f5-l
+
+    [:li.absolute.top-1.static-l.ph4.mh2.fw3.di-l.pt1.pb3.pv3-l
+     [:a.white.link.dim.mono
+      {:href (coast/url-for :site.home/index)}
+      [:img.dib.w1.h1.mr1
+       {:alt "Site logo"
+        :src "/assets/img/ClojureWalkLogoSquare.png"}]
+      "Clojure/Walk"]]
+
+    #_[:li.ph4.di-l.pv2.tl.pv0-l]]])
+
 (defn layout [request body]
   (list
     (doctype :html5)
@@ -25,6 +40,7 @@
       (coast/css "bundle.css")
       (coast/js "bundle.js")
       [:body.bg-black-cw
+       (navbar)
        body]]]))
 
 (defn link-to [url & body]
@@ -118,11 +134,11 @@
    body])
 
 (defn youtube-player
-  [link]
+  [youtubeid]
   [:iframe
    {:width           560
     :height          315
-    :src             link
+    :src             (str "https://www.youtube.com/embed/" youtubeid)
     :frameborder     "0"
     :allow           "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     :allowfullscreen nil}])
