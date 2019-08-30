@@ -7,13 +7,19 @@
     [:title "Clojure/Walk"]
     [:meta {:name "description" :content "Clojure tutorials and resources."}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+    [:meta {:name "twitter:card" :content "summary"}]
+    [:meta {:name "twitter:creator" :content "@dawranliou"}]
+    [:meta {:property "og:url" :content "https://clojurewalk.com"}]
+    [:meta {:property "og:title" :content "Clojure/Walk"}]
+    [:meta {:property "og:description" :content "Clojure tutorials and resources."}]
+    [:meta {:property "og:image" :content "https://clojurewalk.com/assets/img/logo-with-text.png"}]
     [:link {:rel= "short icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel= "icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:href "https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300&display=swap" :rel "stylesheet"}]
     (coast/css "bundle.css")
-    (coast/js "bundle.js")]
-   [:body
-    body]])
+    (coast/js "bundle.js")
+    [:body
+     body]]])
 
 (defn link-to [url & body]
   [:a {:href url :class "f6 link underline blue"}
@@ -104,3 +110,13 @@
 (defn tc [& body]
   [:div {:class "tc"}
    body])
+
+(defn youtube-player
+  [link]
+  [:iframe
+   {:width           560
+    :height          315
+    :src             link
+    :frameborder     "0"
+    :allow           "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    :allowfullscreen nil}])
