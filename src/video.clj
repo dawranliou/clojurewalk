@@ -23,7 +23,10 @@
                        (th "id")
                        (th "updated-at")
                        (th "created-at")
-                       (th "title")))
+                       (th "title")
+                       (th "")
+                       (th "")
+                       (th "")))
                    (tbody
                      (for [row rows]
                        (tr
