@@ -21,7 +21,7 @@
     [:link {:href "https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300&display=swap" :rel "stylesheet"}]
     (coast/css "bundle.css")
     (coast/js "bundle.js")
-    [:body
+    [:body.bg-black-cw
      body]]])
 
 (defn link-to [url & body]
