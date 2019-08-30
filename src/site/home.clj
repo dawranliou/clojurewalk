@@ -18,6 +18,9 @@
      #_[:li.ph4.di-l.pv2.tl.pv0-l]]]
    [:main.pt5.bg-white-cw
     [:div.pa4.w-100.center.mw8
+     [:div.tc
+      [:p.f1.dib.mono.bg-green-cw
+       "Coming soon!"]]
      (for [{:video/keys [title youtubeid]}
            (coast/q '[:select *
                       :from video
@@ -27,5 +30,4 @@
            :let [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
        [:div.tc.mv5
         [:h2 title]
-        [:img {:src link}]
-        ])]]])
+        [:img {:src link}]])]]])
