@@ -118,7 +118,7 @@
 
 (defn youtube-player
   [youtubeid]
-  [:div.mv4
+  [:div.mv4.video-container
    [:iframe
     {:width           560
      :height          315
