@@ -5,7 +5,7 @@
 (defn layout [request body]
   (list
     (doctype :html5)
-    [:html
+    [:html {:lang "en"}
      [:head
       [:title "Clojure/Walk"]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]

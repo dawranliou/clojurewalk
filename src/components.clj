@@ -18,7 +18,7 @@
 
 (defn footer
   []
-  [:footer.pv4.ph3.ph5-m.ph6-l.mid-gray
+  [:footer.pv4.ph3.ph5-m.ph6-l.moon-gray
    [:small.f6.db.tc
     "© 2019 "
     [:b.ttu
