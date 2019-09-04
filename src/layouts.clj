@@ -36,7 +36,6 @@
       [:meta {:name "msapplication-TileColor" :content "#ffffff"}]
       [:meta {:name "msapplication-TileImage" :content "/ms-icon-144x144.png"}]
       [:meta {:name "theme-color" :content "#ffffff"}]
-      [:link {:href "https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300&display=swap" :rel "stylesheet"}]
       (coast/css "bundle.css")
       (coast/js "bundle.js")
       [:body.bg-black-cw
