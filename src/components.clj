@@ -8,7 +8,7 @@
    [:label.dn-l.pointer.absolute.top-1.right-1.h2.w2 {:for "burger"}
     [:i.menu-icon]]
 
-   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.w-100.list.pl0.mv0.f3.fw3.f5-l
+   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.w-100.list.pl0.mv0.f4
 
     [:li.absolute.top-1.static-l.ph4.di-l
      [:a.white.link.dim.mono
@@ -17,19 +17,19 @@
        {:alt "Clojure/Walk logo"
         :src "/assets/img/NavLogo_Wt.png"}]]]
 
-    [:li.ph4.pt5.pb2.tl.dn-l
+    [:li.ph4.pt5.mb3.tl.dn-l
      [:a.white.link
       {:href "#"}
       "Home"]]
-    [:li.ph4.di-l.pv2.tl.pv0-l
+    [:li.ph4.di-l.mv3.tl.pv0-l
      [:a.white.link
       {:href "#"}
       "Videos"]]
-    [:li.ph4.di-l.pv2.tl.pv0-l
+    [:li.ph4.di-l.mv3.tl.pv0-l
      [:a.white.link
       {:href "#"}
       "Articles"]]
-    [:li.ph4.di-l.pv2.tl.pv0-l
+    [:li.ph4.di-l.mv3.tl.pv0-l
      [:a.white.link
       {:href "#"}
       "About"]]]])
