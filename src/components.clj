@@ -8,12 +8,12 @@
    [:label.dn-l.pointer.absolute.top-1.right-1.h2.w2 {:for "burger"}
     [:i.menu-icon]]
 
-   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.w-100.list.pl0.pt3.mv0.f3.fw3.f5-l
+   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.w-100.list.pl0.mv0.f3.fw3.f5-l
 
-    [:li.absolute.top-1.static-l.ph4.mh2.fw3.di-l.pt1.pb3.pv3-l
+    [:li.absolute.top-1.static-l.ph4.di-l
      [:a.white.link.dim.mono
       {:href (coast/url-for :site.home/index)}
-      [:img.dib.h1plus.h2-l
+      [:img.dib.h1-plus
        {:alt "Clojure/Walk logo"
         :src "/assets/img/NavLogo_Wt.png"}]]]
 

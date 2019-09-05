@@ -59,10 +59,10 @@ html, body {
     width: 1.5em;
     height: 0.15em;
     background: var(--white-cw);
-    box-shadow: 0 0.625em 0 0 var(--white-cw), 0 1.25em 0 0 var(--white-cw);
+    box-shadow: 0 0.5em 0 0 var(--white-cw), 0 1em 0 0 var(--white-cw);
 }
 
-.h1plus {
+.h1-plus {
     height: 1.5rem;
 }
 
