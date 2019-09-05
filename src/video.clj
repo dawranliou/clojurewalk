@@ -130,5 +130,18 @@
           (coast/flash "Something went wrong!")))))
 
 (comment
-  (coast/insert #:video{:youtubeid "bPz4-Vcx27A"
-                        :title     "Web Development with Coast part 1 - Quickstart"}))
+  (coast/q '[:select * :from video])
+
+  (coast/delete {:video/id 1})
+
+  (coast/insert [#:video{:youtubeid "bPz4-Vcx27A"
+                         :title     "Web Development with Coast part 1 - Quickstart"}
+                 #:video{:youtubeid "KY15lX2xaic"
+                         :title     "Web Development with Coast part 2 - Deploy"}
+                 #:video{:youtubeid "nb92CTLYTtk"
+                         :title     "Web development with Coast and Clojure part 3 - Deirectory Structure"}
+                 #:video{:youtubeid "B63pQQZhFBA"
+                         :title     "Web Development with Coast part 4 - View and Hiccup"}
+                 #:video{:youtubeid "Wm2wQILm0x4"
+                         :title     "Web Development with Coast part 5 - Authentication Middleware"}])
+  )

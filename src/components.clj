@@ -27,11 +27,11 @@
       "Videos"]]
     [:li.ph4.di-l.mv3.tl.pv0-l
      [:a.white.link
-      {:href "#"}
+      {:href (coast/url-for :site.article/index)}
       "Articles"]]
     [:li.ph4.di-l.mv3.tl.pv0-l
      [:a.white.link
-      {:href "#"}
+      {:href (coast/url-for :site.about/index)}
       "About"]]]])
 
 (defn footer
