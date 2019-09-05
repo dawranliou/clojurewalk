@@ -128,3 +128,7 @@
       (coast/redirect-to ::index)
       (-> (coast/redirect-to ::index)
           (coast/flash "Something went wrong!")))))
+
+(comment
+  (coast/insert #:video{:youtubeid "bPz4-Vcx27A"
+                        :title     "Web Development with Coast part 1 - Quickstart"}))

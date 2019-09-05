@@ -10,7 +10,8 @@
     (coast/site
       (coast/with-layout layouts/layout
         [:get "/" :site.home/index]
-        [:get "/vids/:youtubeid" :site.video/index]
+        [:get "/vids" :site.video/index]
+        [:get "/vids/:youtubeid" :site.video/player]
 
         [:get "/admin/sign-in" :admin/sign-in]
         [:post "/admin/sign-in" :admin/create-session]

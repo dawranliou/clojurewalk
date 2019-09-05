@@ -8,7 +8,7 @@
    [:label.dn-l.pointer.absolute.top-1.right-1.h2.w2 {:for "burger"}
     [:i.menu-icon]]
 
-   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.w-100.list.pl0.mv0.f4
+   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.w-100.list.pl0.mv0.f4.f5-l
 
     [:li.absolute.top-1.static-l.ph4.di-l
      [:a.white.link.dim.mono
@@ -19,11 +19,11 @@
 
     [:li.ph4.pt5.mb3.tl.dn-l
      [:a.white.link
-      {:href "#"}
+      {:href (coast/url-for :site.home/index)}
       "Home"]]
     [:li.ph4.di-l.mv3.tl.pv0-l
      [:a.white.link
-      {:href "#"}
+      {:href (coast/url-for :site.video/index)}
       "Videos"]]
     [:li.ph4.di-l.mv3.tl.pv0-l
      [:a.white.link

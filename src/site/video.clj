@@ -4,6 +4,24 @@
 
 (defn index
   [request]
+  [:div.pa4.w-100.center.mw8
+   (for [{:video/keys [title youtubeid]}
+         (coast/q '[:select *
+                    :from video
+                    :order id
+                    :limit 10])
+
+         :let [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
+     [:div.tc.mv5
+      [:h2
+       [:a.link.dim.black-cw
+        {:href (coast/url-for :site.video/player {:youtubeid youtubeid})}
+        title]]
+      [:img {:alt (str "The thumbnail of " title)
+             :src link}]])])
+
+(defn player
+  [request]
   (let [youtubeid   (-> request :params :youtubeid)
         row         (coast/pluck
                       '[:select * :from video :where [youtubeid ?youtubeid]]
