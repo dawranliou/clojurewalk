@@ -15,8 +15,25 @@
    [:section.bg-white-cw.black-cw
     [:div.mw9.center.pa4.pt5-ns.ph7-l
      [:h2
-      "Check out the "
+      "Check out the latest "
       [:a.link.dim.green-cw.underline
        {:href (coast/url-for :site.video/index)}
        "videos"]
-      "!"]]]])
+      ":"]
+     (for [{:video/keys [title youtubeid]} (coast/q '[:select *
+                                                      :from video
+                                                      :order id desc
+                                                      :limit 3])
+           :let                            [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
+       [:div.cf.mv5
+        [:img.fl.w-100.w-50-ns {:alt (str "The thumbnail of " title)
+                                :src link}]
+        [:h2.fl.w-100.w-50-ns.ph3-ns
+         [:a.link.dim.black-cw
+          {:href (coast/url-for :site.video/player {:youtubeid youtubeid})}
+          title]]
+        ])
+     [:p.f3.tc
+      [:a.link.dim.green-cw
+       {:href (coast/url-for :site.video/index)}
+       "Show more"]]]]])
