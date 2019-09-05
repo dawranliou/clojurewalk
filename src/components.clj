@@ -3,17 +3,36 @@
 
 (defn navbar
   []
-  [:nav.w-100.tc.white.fixed.bg-black-cw.z-3.shadow-5
-   [:ul.overflow-hidden.menu.db-l.w-100.list.tc.pl0.pt3.mv0.f3.fw3.f5-l
+  [:nav.w-100.white.fixed.bg-black-cw.z-3.shadow-5
+   [:input#burger.absolute.top-2.right-1.dn {:type "checkbox"}]
+   [:label.dn-l.pointer.absolute.top-1.right-1.h2.w2 {:for "burger"}
+    [:i.menu-icon]]
+
+   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.w-100.list.pl0.pt3.mv0.f3.fw3.f5-l
 
     [:li.absolute.top-1.static-l.ph4.mh2.fw3.di-l.pt1.pb3.pv3-l
      [:a.white.link.dim.mono
       {:href (coast/url-for :site.home/index)}
-      [:img.dib.h2
+      [:img.dib.h1plus.h2-l
        {:alt "Clojure/Walk logo"
         :src "/assets/img/NavLogo_Wt.png"}]]]
 
-    #_[:li.ph4.di-l.pv2.tl.pv0-l]]])
+    [:li.ph4.pt5.pb2.tl.dn-l
+     [:a.white.link
+      {:href "#"}
+      "Home"]]
+    [:li.ph4.di-l.pv2.tl.pv0-l
+     [:a.white.link
+      {:href "#"}
+      "Videos"]]
+    [:li.ph4.di-l.pv2.tl.pv0-l
+     [:a.white.link
+      {:href "#"}
+      "Articles"]]
+    [:li.ph4.di-l.pv2.tl.pv0-l
+     [:a.white.link
+      {:href "#"}
+      "About"]]]])
 
 (defn footer
   []
