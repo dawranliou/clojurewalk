@@ -1,2 +1,2 @@
-{"bundle.css" ["tachyons.min.css" "app.css"]
- "bundle.js" ["app.js"]}
+{"bundle.css" ["tachyons.min.css" "app.css" "fonts.css"]
+ "bundle.js"  ["app.js"]}
