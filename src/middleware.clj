@@ -1,10 +1,11 @@
 (ns middleware
   (:require
-   [coast]))
+   [coast]
+   [coast.responses]))
 
 (defn auth
   [handler]
   (fn [request]
-    (if (get-in request [:session :admin])
+    (if (get-in request [:session :member/email])
       (handler request)
-      (coast/redirect-to :admin/sign-in))))
+      (coast.responses/forbidden "Sorry pal, you are forbidden here."))))

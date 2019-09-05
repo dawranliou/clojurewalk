@@ -2,7 +2,7 @@
   (:require [coast]))
 
 (defn index [request]
-  [:div
+  [:div.bg-green-cw
    [:header.bg-green-cw.sans-serif
     [:div.mw9.center.pa4.pt5-ns.ph7-l
      [:h1.f2.f1-m.f-headline-l.measure-narrow.lh-title.mv0
