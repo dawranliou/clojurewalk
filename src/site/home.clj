@@ -8,7 +8,7 @@
      [:h1.f2.f1-m.f-headline-l.measure-narrow.lh-title.mv0
       [:span.lh-copy.pa1.tracked-light.white-cw
        "Welcome to "
-       [:span.mono.ttu.bg-black-cw.gold.ph2
+       [:span.mono.ttu.bg-black-cw.white-cw.ph2
         "Clojure/Walk"]]]
      [:h2.f3.fw1.i
       "Take a walk to the Clojure and ClojureScript libraries, one at a time."]]]
