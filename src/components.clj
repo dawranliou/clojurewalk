@@ -9,10 +9,9 @@
     [:li.absolute.top-1.static-l.ph4.mh2.fw3.di-l.pt1.pb3.pv3-l
      [:a.white.link.dim.mono
       {:href (coast/url-for :site.home/index)}
-      [:img.dib.w1.h1.mr1
-       {:alt "Site logo"
-        :src "/assets/img/ClojureWalkLogoSquare.png"}]
-      "Clojure/Walk"]]
+      [:img.dib.h2
+       {:alt "Clojure/Walk logo"
+        :src "/assets/img/NavLogo_Wt.png"}]]]
 
     #_[:li.ph4.di-l.pv2.tl.pv0-l]]])
 
