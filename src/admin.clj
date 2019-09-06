@@ -2,19 +2,20 @@
   (:require
    [buddy.hashers :as hashers]
    [coast]
-   [components :refer [submit input link-to]]))
+   [components :refer [container submit input link-to table thead tbody th tr td]]))
 
 (defn sign-in
   [request]
-  [:div.pa4.center.mw8
-   [:h1 "Admin"]
-   (when-let [error (:error/message request)]
-     [:div error])
-   (coast/form-for
-     ::create
-     (input {:type "email" :name "member/email"})
-     (input {:type "password" :name "member/password"})
-     (submit "Submit"))])
+  (container
+    {:mw 6}
+    [:h1 "Admin"]
+    (when-let [error (:error/message request)]
+      [:div error])
+    (coast/form-for
+      ::create
+      (input {:type "email" :name "member/email"})
+      (input {:type "password" :name "member/password"})
+      (submit "Submit"))))
 
 (defn create-session
   [request]
@@ -39,11 +40,17 @@
 
 (defn dashboard
   [request]
-  [:div.pa4.w-100.center.mw8
-   [:h1 "Dashboard"]
-   (link-to (coast/url-for :video/index) "Videos")
-   (coast/form-for ::delete-session
-                   (submit "Sign out"))])
+  (container
+    {:mw 6}
+    [:h1.dib "Dashboard"]
+    (table
+      (tbody (tr (td (link-to (coast/url-for :video/index) "Videos")))
+             (tr (td "Articles"))
+             (tr (td "About"))))
+
+    [:div.mv3
+     (coast/form-for ::delete-session
+                     (submit "Sign out"))]))
 
 (comment
   ;; sign up a admin user
