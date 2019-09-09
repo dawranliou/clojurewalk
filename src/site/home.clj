@@ -1,5 +1,6 @@
 (ns site.home
-  (:require [coast]))
+  (:require [coast]
+            [components :refer [subscribe-to-newsletter]]))
 
 (defn index [request]
   [:div.bg-green-cw
@@ -10,10 +11,12 @@
        "Welcome to "
        [:span.mono.ttu.bg-black-cw.white-cw.ph2
         "Clojure/Walk"]]]
-     [:h2.f3.fw1.i
+     [:h2.f5.f4-m.f3-l.fw1.i
       "Take a walk to the Clojure and ClojureScript libraries, one at a time."]]]
+
    [:section.bg-white-cw.black-cw
     [:div.mw9.center.pa4.pt5-ns.ph7-l
+
      [:h2
       "Check out the latest "
       [:a.link.dim.green-cw.underline
@@ -34,6 +37,9 @@
           title]]
         ])
      [:p.f3.tc
-      [:a.link.dim.green-cw
+      [:a.link.dim.black-cw.underline
        {:href (coast/url-for :site.video/index)}
-       "Show more"]]]]])
+       "Show more"]]]]
+   [:section
+    [:div.mw9.center.pa4.pv5-ns.ph7-l
+     (subscribe-to-newsletter)]]])

@@ -32,6 +32,11 @@
     background-color: var(--green-cw);
 }
 
+.hover-bg-black-cw:hover,
+.hover-bg-black-cw:focus {
+    background-color: var(--black-cw);
+}
+
 .menu {
     min-height:4rem;
     max-height:0;

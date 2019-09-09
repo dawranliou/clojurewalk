@@ -148,12 +148,12 @@
 
 (defn subscribe-to-newsletter
   []
-  [:div.pa4.ba.cf
+  [:div.pa4.ba.cf.bg-white-cw
    [:legend.pa0.mb2 "Sign up for our newsletter"]
    (coast/form-for :site.about/subscribe
                    [:input {:class "f6 f5-l input-reset bn fl pa3 lh-solid w-100 w-75-ns br2-ns br--left-ns"
                             :type  "email" :name "maillist/email" :placeholder "your@email.com"}]
-                   [:input {:class "f6 f5-l button-reset fl pv3 tc bn bg-animate bg-green-cw hover-bg-black white pointer w-100 w-25-ns br2-ns br--right-ns"
+                   [:input {:class "f6 f5-l button-reset fl pv3 tc bn bg-animate bg-green-cw hover-bg-black-cw white pointer w-100 w-25-ns br2-ns br--right-ns"
                             :type  "submit"
                             :value "Subscribe"}])])
 
