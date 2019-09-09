@@ -3,7 +3,7 @@
             [components :refer [container subscribe-to-newsletter banner]]))
 
 (def about-content
-  ["I want to help you, fellow beginner Clojurists, to know your craft.
+  ["Hi, fellow beginner Clojurists, I want to help you to know your craft.
 When I started learning Clojure, I was desperate to find someone to
 show me what I can do with the language.
 Clojure is powerful. However, to be effective there are many alien
