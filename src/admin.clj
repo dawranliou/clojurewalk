@@ -45,6 +45,7 @@
     [:h1.dib "Dashboard"]
     (table
       (tbody (tr (td (link-to (coast/url-for :video/index) "Videos")))
+             (tr (td (link-to (coast/url-for :maillist/index) "Maillist")))
              (tr (td "Articles"))
              (tr (td "About"))))
 

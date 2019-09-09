@@ -23,12 +23,16 @@
         ;; about
         [:get "/about" :site.about/index]
 
+        ;; subscribe-to-newsletter
+        [:post "/subscribe-to-newsletter" :site.about/subscribe]
+
         ;; admin
         [:get "/admin/sign-in" :admin/sign-in]
         [:post "/admin/sign-in" :admin/create-session]
         (coast/with
           middleware/auth
           [:resource :video]
+          [:resource :maillist]
           [:get "/admin" :admin/dashboard]
           [:post "/admin/sign-out" :admin/delete-session])))
 

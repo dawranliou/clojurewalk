@@ -145,3 +145,29 @@
      :frameborder     "0"
      :allow           "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
      :allowfullscreen nil}]])
+
+(defn subscribe-to-newsletter
+  []
+  [:div.pa4.ba.cf
+   [:legend.pa0.mb2 "Sign up for our newsletter"]
+   (coast/form-for :site.about/subscribe
+                   [:input {:class "f6 f5-l input-reset bn fl pa3 lh-solid w-100 w-75-ns br2-ns br--left-ns"
+                            :type  "email" :name "maillist/email" :placeholder "your@email.com"}]
+                   [:input {:class "f6 f5-l button-reset fl pv3 tc bn bg-animate bg-green-cw hover-bg-black white pointer w-100 w-25-ns br2-ns br--right-ns"
+                            :type  "submit"
+                            :value "Subscribe"}])])
+
+(defn banner [s & {:keys [type] :or {type :info}}]
+  (when (some? s)
+    [:div.pa4.tc
+     {:class (type {:info    "bg-lightest-blue"
+                    :warning "bg-light-red"
+                    :success "bg-light-green"})}
+     (if (map? s)
+       (for [[_ v] s]
+         [:p v])
+       [:p
+        s])]))
+
+(comment
+  (banner "hi" :type :info))
