@@ -9,36 +9,39 @@
                         :order id
                         :limit 10])]
     (container {:mw 8}
-     (when (not (empty? rows))
-      (link-to (coast/url-for ::build) "New maillist"))
+               (when (not (empty? rows))
+                 (link-to (coast/url-for ::build) "New maillist"))
 
-     (when (empty? rows)
-      (tc
-        (link-to (coast/url-for ::build) "New maillist")))
+               (when (empty? rows)
+                 (tc
+                   (link-to (coast/url-for ::build) "New maillist")))
 
-     (when (not (empty? rows))
-       (table
-        (thead
-          (tr
-            (th "display-name")
-            (th "id")
-            (th "email")
-            (th "updated-at")
-            (th "created-at")))
-        (tbody
-          (for [row rows]
-            (tr
-              (td (:maillist/display-name row))
-              (td (:maillist/id row))
-              (td (:maillist/email row))
-              (td (:maillist/updated-at row))
-              (td (:maillist/created-at row))
-              (td
-                (link-to (coast/url-for ::view row) "View"))
-              (td
-                (link-to (coast/url-for ::edit row) "Edit"))
-              (td
-                (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
+               (when (not (empty? rows))
+                 (table
+                   (thead
+                     (tr
+                       (th "display-name")
+                       (th "id")
+                       (th "email")
+                       (th "updated-at")
+                       (th "created-at")
+                       (th "")
+                       (th "")
+                       (th "")))
+                   (tbody
+                     (for [row rows]
+                       (tr
+                         (td (:maillist/display-name row))
+                         (td (:maillist/id row))
+                         (td (:maillist/email row))
+                         (td (:maillist/updated-at row))
+                         (td (:maillist/created-at row))
+                         (td
+                           (link-to (coast/url-for ::view row) "View"))
+                         (td
+                           (link-to (coast/url-for ::edit row) "Edit"))
+                         (td
+                           (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
 
 
 (defn view [request]
