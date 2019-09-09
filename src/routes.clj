@@ -33,6 +33,7 @@
           middleware/auth
           [:resource :video]
           [:resource :maillist]
+          [:resource :series]
           [:get "/admin" :admin/dashboard]
           [:post "/admin/sign-out" :admin/delete-session])))
 

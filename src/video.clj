@@ -24,6 +24,8 @@
                        (th "updated-at")
                        (th "created-at")
                        (th "title")
+                       (th "series")
+                       (th "description")
                        (th "")
                        (th "")
                        (th "")))
@@ -35,6 +37,8 @@
                          (td (:video/updated-at row))
                          (td (:video/created-at row))
                          (td (:video/title row))
+                         (td (:video/series row))
+                         (td (:video/description row))
                          (td
                            (link-to (coast/url-for ::view row) "View"))
                          (td
@@ -51,7 +55,13 @@
                  (dd (:video/youtubeid video))
 
                  (dt "title")
-                 (dd (:video/title video)))
+                 (dd (:video/title video))
+
+                 (dt "series")
+                 (dd (:video/series video))
+
+                 (dt "description")
+                 (dd (:video/description video)))
                (mr2
                  (link-to (coast/url-for ::index) "List"))
                (mr2
@@ -80,12 +90,18 @@
                              (label {:for "video/title"} "title")
                              (input {:type "text" :name "video/title" :value (-> request :params :video/title)})
 
+                             (label {:for "video/series"} "series")
+                             (input {:type "text" :name "video/series" :value (-> request :params :video/series)})
+
+                             (label {:for "video/description"} "description")
+                             (input {:type "text" :name "video/description" :value (-> request :params :video/description)})
+
                              (link-to (coast/url-for ::index) "Cancel")
                              (submit "New video"))))
 
 (defn create [request]
-  (let [[_ errors] (-> (coast/validate (:params request) [[:required [:video/youtubeid :video/title]]])
-                       (select-keys [:video/youtubeid :video/title])
+  (let [[_ errors] (-> (coast/validate (:params request) [[:required [:video/youtubeid :video/title :video/series :video/description]]])
+                       (select-keys [:video/youtubeid :video/title :video/series :video/description])
                        (coast/insert)
                        (coast/rescue))]
     (if (nil? errors)
@@ -105,6 +121,12 @@
                                (label {:for "video/title"} "title")
                                (input {:type "text" :name "video/title" :value (:video/title video)})
 
+                               (label {:for "video/series"} "series")
+                               (input {:type "text" :name "video/series" :value (:video/series video)})
+
+                               (label {:for "video/description"} "description")
+                               (input {:type "text" :name "video/description" :value (:video/description video)})
+
                                (link-to (coast/url-for ::index) "Cancel")
                                (submit "Update video")))))
 
@@ -112,8 +134,8 @@
   (let [video      (coast/fetch :video (-> request :params :video-id))
         [_ errors] (-> (select-keys video [:video/id])
                        (merge (:params request))
-                       (coast/validate [[:required [:video/id :video/youtubeid :video/title]]])
-                       (select-keys [:video/id :video/youtubeid :video/title])
+                       (coast/validate [[:required [:video/id :video/youtubeid :video/title :video/series :video/description]]])
+                       (select-keys [:video/id :video/youtubeid :video/title :video/series :video/description])
                        (coast/update)
                        (coast/rescue))]
     (if (nil? errors)
@@ -143,5 +165,4 @@
                  #:video{:youtubeid "B63pQQZhFBA"
                          :title     "Web Development with Coast part 4 - View and Hiccup"}
                  #:video{:youtubeid "Wm2wQILm0x4"
-                         :title     "Web Development with Coast part 5 - Authentication Middleware"}])
-  )
+                         :title     "Web Development with Coast part 5 - Authentication Middleware"}]))

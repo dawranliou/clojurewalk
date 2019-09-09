@@ -44,8 +44,9 @@
     {:mw 6}
     [:h1.dib "Dashboard"]
     (table
-      (tbody (tr (td (link-to (coast/url-for :video/index) "Videos")))
+      (tbody (tr (td (link-to (coast/url-for :video/index) "Video")))
              (tr (td (link-to (coast/url-for :maillist/index) "Maillist")))
+             (tr (td (link-to (coast/url-for :series/index) "Series")))
              (tr (td "Articles"))))
 
     [:div.mv3
