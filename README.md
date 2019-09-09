@@ -1,4 +1,4 @@
-# clojurewalk
+![Clojure/Walk logo](resources/public/assets/img/NavLogo_Bk.png)
 
 ## Start
 
