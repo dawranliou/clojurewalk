@@ -38,7 +38,7 @@
       [:meta {:name "theme-color" :content "#ffffff"}]
       (coast/css "bundle.css")
       (coast/js "bundle.js")
-      [:body.bg-black-cw
+      [:body.bg-black-cw.sans-serif
        (components/navbar)
        [:main.pt5.bg-white-cw
         body]
