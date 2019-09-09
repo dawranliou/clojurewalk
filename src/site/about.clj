@@ -12,27 +12,29 @@ territories any Clojurist need to force themselves into
    "Clojure/Walk is a place to learn Clojure and ClojureScript libraries.
 By showing you the libraries, you will learn about: REPL driven development,
 the Clojure ecosystem, and how to be on your own."
-   "I hope you enjoy the contents. At this point, this is my side project
-and I will post updates as frequently as I could. If you have any suggestion,
-you're welcome to contact me."])
+   ])
 
 (defn index
   [{:keys [errors flash]}]
   (container
     {:mw 6}
-    [:article.measure.f5.f4-ns
+    [:article.measure
      (banner errors :type :warning)
      (banner flash :type :info)
      [:h1.tc "About "
       [:span.mono.bg-green-cw.ttu.fw4 "Clojure/Walk"]]
      (for [paragraph about-content]
-       [:p.tj.lh-copy paragraph])
+       [:p.lh-copy paragraph])
 
-     [:p.tr.mt4
-      [:a.link.dim.black-cw.underline {:href "mailto://dawran6@gmail.com"} "dawran6@gmail.com"]]
-     [:p.tr
-      [:a.link.dim.black-cw.underline {:href "https://twitter.com/dawranliou"} "@dawranliou"]]
-     [:p.tr
+     [:p.lh-copy
+      "I hope you enjoy the contents. At this point, this is my side project
+and I will post updates as frequently as I could. If you have any suggestion,
+you're welcome to "
+      [:a.link.dim.black-cw.underline {:href "https://twitter.com/dawranliou"} "contact me"]
+      "."]
+
+
+     [:p.tr.mb5
       "~ Daw-Ran Liou 2019/9/19"]]
     (subscribe-to-newsletter)))
 
