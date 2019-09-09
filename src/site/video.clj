@@ -12,13 +12,13 @@
          [:h2 title]
          (for [{:video/keys [title youtubeid]} videos
                :let                            [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
-           [:div.fl.w-100.w-third-ns.pa2
-            [:h2.f6
-             [:a.link.dim.black-cw
-              {:href (coast/url-for :site.video/player {:youtubeid youtubeid})}
-              title]]
-            [:img {:alt (str "The thumbnail of " title)
-                   :src link}]])]))))
+           [:div.fl.w-100.w-third-ns.pa2.lift
+            [:p.black-cw
+             title]
+            [:a.link.dim
+             {:href (coast/url-for :site.video/player {:youtubeid youtubeid})}
+             [:img {:alt (str "The thumbnail of " title)
+                    :src link}]]])]))))
 
 (defn player
   [request]
