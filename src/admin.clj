@@ -46,8 +46,7 @@
     (table
       (tbody (tr (td (link-to (coast/url-for :video/index) "Videos")))
              (tr (td (link-to (coast/url-for :maillist/index) "Maillist")))
-             (tr (td "Articles"))
-             (tr (td "About"))))
+             (tr (td "Articles"))))
 
     [:div.mv3
      (coast/form-for ::delete-session
