@@ -13,20 +13,20 @@ By showing you the libraries, you will learn about: REPL driven development,
 the Clojure ecosystem, and how to be on your own."
    "I hope you enjoy the contents. At this point, this is my side project
 and I will post updates as frequently as I could. If you have any suggestion,
-you're welcome to contact me"])
+you're welcome to contact me:"])
 
 (defn index
   [request]
   (container
     {:mw 6}
-    [:article.measure
+    [:article.measure.f5.f4-ns
      [:h1.tc "About "
       [:span.mono.bg-green-cw.ttu.fw4 "Clojure/Walk"]]
      (for [paragraph about-content]
        [:p.lh-copy paragraph])
      [:p.tr
-      [:a {:href "mailto://dawran6@gmail.com"} "dawran6@gmail.com"]]
+      [:a.link.dim.blue {:href "mailto://dawran6@gmail.com"} "dawran6@gmail.com"]]
      [:p.tr
-      [:a {:href "https://twitter.com/dawranliou"} "@dawranliou"]]
+      [:a.link.dim.blue {:href "https://twitter.com/dawranliou"} "@dawranliou"]]
      [:p.tr
       "~ Daw-Ran Liou 2019/9/19"]]))
