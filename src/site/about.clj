@@ -26,9 +26,9 @@ you're welcome to contact me."])
      [:h1.tc "About "
       [:span.mono.bg-green-cw.ttu.fw4 "Clojure/Walk"]]
      (for [paragraph about-content]
-       [:p.lh-copy paragraph])
+       [:p.tj.lh-copy paragraph])
 
-     [:p.tr
+     [:p.tr.mt4
       [:a.link.dim.black-cw.underline {:href "mailto://dawran6@gmail.com"} "dawran6@gmail.com"]]
      [:p.tr
       [:a.link.dim.black-cw.underline {:href "https://twitter.com/dawranliou"} "@dawranliou"]]
