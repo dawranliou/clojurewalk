@@ -8,16 +8,16 @@
    [:label.dn-l.pointer.absolute.top-1.right-1.h2.w2 {:for "burger"}
     [:i.menu-icon]]
 
-   [:ul.overflow-hidden.menu.inline-flex-l.items-center-l.justify-between.w-100.list.pl0.mv0.f4.f5-l
+   [:div.overflow-hidden.menu.inline-flex-l.items-center-l.justify-between.w-100.mv0.f4.f5-l
 
-    [:li.absolute.top-1.static-l.ph4.di-l
+    [:div.absolute.top-1.static-l.ph4.di-l
      [:a.white.link.dim.mono
       {:href (coast/url-for :site.home/index)}
       [:img.dib.h1-plus
        {:alt "Clojure/Walk logo"
         :src "/assets/img/NavLogo_Wt.png"}]]]
 
-    [:div
+    [:ul.list.pl0
      [:li.ph4.pt5.mb3.tl.dn-l
       [:a.white.link
        {:href (coast/url-for :site.home/index)}
@@ -148,12 +148,13 @@
 
 (defn subscribe-to-newsletter
   []
-  [:div.pa4.ba.cf.bg-white-cw
+  [:div.pa4.ba.cf.bg-white-cw.f6.f5-l
    [:legend.pa0.mb2 "Sign up for our newsletter"]
    (coast/form-for :site.about/subscribe
-                   [:input {:class "f6 f5-l input-reset bn fl pa3 lh-solid w-100 w-75-ns br2-ns br--left-ns"
-                            :type  "email" :name "maillist/email" :placeholder "your@email.com"}]
-                   [:input {:class "f6 f5-l button-reset fl pv3 tc bn bg-animate bg-green-cw hover-bg-black-cw white pointer w-100 w-25-ns br2-ns br--right-ns"
+                   [:label {:class "clip" :for "maillist/email"} "Email Address"]
+                   [:input {:class "input-reset bn fl pa3 lh-solid w-100 w-75-ns br2-ns br--left-ns"
+                            :type  "email" :name "maillist/email" :id "maillist/email" :placeholder "your@email.com"}]
+                   [:input {:class "button-reset fl pv3 tc bn bg-animate bg-green-cw hover-bg-black-cw white pointer w-100 w-25-ns br2-ns br--right-ns"
                             :type  "submit"
                             :value "Subscribe"}])])
 

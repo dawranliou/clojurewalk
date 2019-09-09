@@ -19,7 +19,7 @@
 
      [:h2
       "Check out the latest "
-      [:a.link.dim.green-cw.underline
+      [:a.link.dim.black-cw.underline
        {:href (coast/url-for :site.video/index)}
        "videos"]
       ":"]
