@@ -9,34 +9,37 @@
                         :order id
                         :limit 10])]
     (container {:mw 8}
-     (when (not (empty? rows))
-      (link-to (coast/url-for ::build) "New series"))
+               (when (not (empty? rows))
+                 (link-to (coast/url-for ::build) "New series"))
 
-     (when (empty? rows)
-      (tc
-        (link-to (coast/url-for ::build) "New series")))
+               (when (empty? rows)
+                 (tc
+                   (link-to (coast/url-for ::build) "New series")))
 
-     (when (not (empty? rows))
-       (table
-        (thead
-          (tr
-            (th "id")
-            (th "updated-at")
-            (th "name")
-            (th "created-at")))
-        (tbody
-          (for [row rows]
-            (tr
-              (td (:series/id row))
-              (td (:series/updated-at row))
-              (td (:series/name row))
-              (td (:series/created-at row))
-              (td
-                (link-to (coast/url-for ::view row) "View"))
-              (td
-                (link-to (coast/url-for ::edit row) "Edit"))
-              (td
-                (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
+               (when (not (empty? rows))
+                 (table
+                   (thead
+                     (tr
+                       (th "id")
+                       (th "updated-at")
+                       (th "created-at")
+                       (th "title")
+                       (th "")
+                       (th "")
+                       (th "")))
+                   (tbody
+                     (for [row rows]
+                       (tr
+                         (td (:series/id row))
+                         (td (:series/updated-at row))
+                         (td (:series/created-at row))
+                         (td (:series/title row))
+                         (td
+                           (link-to (coast/url-for ::view row) "View"))
+                         (td
+                           (link-to (coast/url-for ::edit row) "Edit"))
+                         (td
+                           (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
 
 
 (defn view [request]
@@ -44,8 +47,8 @@
         series (coast/fetch :series id)]
     (container {:mw 8}
       (dl
-        (dt "name")
-        (dd (:series/name series)))
+        (dt "title")
+        (dd (:series/title series)))
       (mr2
         (link-to (coast/url-for ::index) "List"))
       (mr2
@@ -70,16 +73,16 @@
      (errors (:errors request)))
 
     (coast/form-for ::create
-      (label {:for "series/name"} "name")
-      (input {:type "text" :name "series/name" :value (-> request :params :series/name)})
+      (label {:for "series/title"} "title")
+      (input {:type "text" :name "series/title" :value (-> request :params :series/title)})
 
       (link-to (coast/url-for ::index) "Cancel")
       (submit "New series"))))
 
 
 (defn create [request]
-  (let [[_ errors] (-> (coast/validate (:params request) [[:required [:series/name]]])
-                       (select-keys [:series/name])
+  (let [[_ errors] (-> (coast/validate (:params request) [[:required [:series/title]]])
+                       (select-keys [:series/title])
                        (coast/insert)
                        (coast/rescue))]
     (if (nil? errors)
@@ -94,8 +97,8 @@
         (errors (:errors request)))
 
       (coast/form-for ::change series
-        (label {:for "series/name"} "name")
-        (input {:type "text" :name "series/name" :value (:series/name series)})
+        (label {:for "series/title"} "title")
+        (input {:type "text" :name "series/title" :value (:series/title series)})
 
         (link-to (coast/url-for ::index) "Cancel")
         (submit "Update series")))))
@@ -105,8 +108,8 @@
   (let [series (coast/fetch :series (-> request :params :series-id))
         [_ errors] (-> (select-keys series [:series/id])
                        (merge (:params request))
-                       (coast/validate [[:required [:series/id :series/name]]])
-                       (select-keys [:series/id :series/name])
+                       (coast/validate [[:required [:series/id :series/title]]])
+                       (select-keys [:series/id :series/title])
                        (coast/update)
                        (coast/rescue))]
     (if (nil? errors)

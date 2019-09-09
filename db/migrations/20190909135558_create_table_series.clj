@@ -3,5 +3,5 @@
 
 (defn change []
   (create-table :series
-    (text :name)
-    (timestamps)))
+                (text :title)
+                (timestamps)))

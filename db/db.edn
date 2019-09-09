@@ -1,11 +1,12 @@
 {:dev {:database "clojurewalk_dev.sqlite3"
-       :adapter "sqlite"}
+       :adapter  "sqlite"
+       :debug    true}
 
  :test {:database "clojurewalk_test.sqlite3"
-        :adapter "sqlite"}
+        :adapter  "sqlite"}
 
  :prod {:database #env :db-name
-        :adapter "sqlite"}}
+        :adapter  "sqlite"}}
 
  ; or you can use postgres
 
