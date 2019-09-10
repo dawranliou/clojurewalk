@@ -111,7 +111,6 @@
      (submit-block "Publish"))])
 
 (defn build [request]
-  (def r request)
   (container
     {:mw 7}
     [:div.cf
@@ -122,11 +121,7 @@
      [:div.fr
       [:a.blue.pointer.mr3 {:id "edit"} "Edit"]
       [:a.blue.pointer {:id "preview"} "Preview"]]]
-
-    (container
-      {:mw 7}
-      [:div {:id "preview-container"}])
-
+    [:div {:id "preview-container"}]
     [:div {:id "form-container"}
      (form (coast/action-for ::create) request)]))
 
@@ -163,40 +158,45 @@
 
 (defn edit [request]
   (let [post (coast/fetch :post (-> request :params :post-id))]
-    (container {:mw 6}
-               (when (some? (:errors request))
-                 (errors (:errors request)))
+    (container {:mw 7}
+               [:div.cf
+                [:div.fl
+                 [:div {:id "status" :class "f6 gray mb2"} (coast/raw "Saved")]]
+                [:div.fr
+                 [:a {:class "blue pointer dim mr3" :id "edit"} "Edit"]
+                 [:a {:class "gray pointer dim mr3" :id "preview"} "Preview"]
+                 (coast/form (merge (coast/action-for ::change post) {:class "dib ma0"})
+                             [:input {:class "input-reset bn bg-transparent gray pointer dim"
+                                      :type  "submit"
+                                      :name  "submit"
+                                      :value "Un-publish"}])]]
 
-               (coast/form-for ::change post
-                               (label {:for "post/member"} "member")
-                               (input {:type "text" :name "post/member" :value (:post/member post)})
+               [:div {:id "preview-container"}]
+               [:div {:id "form-container"}
+                (form (coast/action-for ::change post) {:params post})])))
 
-                               (label {:for "post/body"} "body")
-                               (input {:type "text" :name "post/body" :value (:post/body post)})
-
-                               (label {:for "post/published-at"} "published-at")
-                               (input {:type "text" :name "post/published-at" :value (:post/published-at post)})
-
-                               (label {:for "post/slug"} "slug")
-                               (input {:type "text" :name "post/slug" :value (:post/slug post)})
-
-                               (label {:for "post/title"} "title")
-                               (input {:type "text" :name "post/title" :value (:post/title post)})
-
-                               (link-to (coast/url-for ::index) "Cancel")
-                               (submit "Update post")))))
-
-(defn change [request]
-  (let [post       (coast/fetch :post (-> request :params :post-id))
-        [_ errors] (-> (select-keys post [:post/id])
-                       (merge (:params request))
-                       (coast/validate [[:required [:post/id :post/member :post/body :post/published-at :post/slug :post/title]]])
+(defn change [{:keys [params] :as request}]
+  (let [post       (coast/fetch :post (:post-id params))
+        post       (if (some? (:post-slug post))
+                     post
+                     (assoc post :post/slug (slug (:post/title params))))
+        post       (case (:submit params)
+                     "Publish"      (if (some? (:post/published-at post))
+                                      post
+                                      (assoc post :post/published-at (coast/now)))
+                     "Un-published" (assoc post :post/published-at nil)
+                     post)
+        [_ errors] (-> (select-keys post [:post/id :post/member :post/slug :post/published-at])
+                       (merge (select-keys params [:post/title :post/body]))
+                       (coast/validate [[:required [:post/id :post/member]]])
                        (select-keys [:post/id :post/member :post/body :post/published-at :post/slug :post/title])
                        (coast/update)
                        (coast/rescue))]
-    (if (nil? errors)
-      (coast/redirect-to ::index)
-      (edit (merge request errors)))))
+    (if (coast/xhr? request)
+      (coast/ok {} :json)
+      (if (nil? errors)
+        (coast/redirect-to ::index)
+        (edit (merge request errors))))))
 
 (defn delete [request]
   (let [[_ errors] (-> (coast/fetch :post (-> request :params :post-id))

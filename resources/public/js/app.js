@@ -25,9 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             document.getElementById("status").textContent = "Unsaved";
             var form = e.target.form;
+            var status = document.getElementById("status").textContent;
 
             // auto save if nothing happens in the next 5 sec
             timer = setTimeout(function () {
+                status = "Saving...";
+
                 var url = form.attributes.action.value;
                 var method = form.attributes.method.value;
                 var data = new FormData(form);
@@ -38,10 +41,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     timer = null;
                     console.log(request);
                     if (request.status == 200) {
-                        document.getElementById("status").textContent = "Saved";
+                        status = "Saved";
+                        var response = JSON.parse(request.response);
+                        var url = response.url;
+                        if (saveCount === 0 && !!url) {
+                            history.pushState({}, '', url);
+                        }
+                        saveCount++;
+                        setTimeout(function() {
+                            status = '&nbsp;';
+                        }, 2000);
+
+                        if (!!response['form-params']) {
+                            form.action = response['form-params']['action'];
+                            form.method = response['form-params']['method'];
+                            var node = document.createElement('input');
+                            node.setAttribute('type', 'hidden');
+                            node.setAttribute('name', '_method');
+                            node.setAttribute('value', response['form-params']['_method']);
+                            form.appendChild(node);
+                        }
                     }
                     else {
-                        document.getElementById("status").textContent = "Something went wrong";
+                        status = "Something went wrong";
                     }
                 };
                 request.send(data);
