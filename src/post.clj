@@ -1,5 +1,6 @@
 (ns post
   (:require [coast]
+            [clojure.string :as string]
             [markdown.core :as markdown]
             [components :refer [submit-block textarea container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
 
@@ -110,6 +111,7 @@
      (submit-block "Publish"))])
 
 (defn build [request]
+  (def r request)
   (container
     {:mw 7}
     [:div.cf
@@ -128,14 +130,36 @@
     [:div {:id "form-container"}
      (form (coast/action-for ::create) request)]))
 
-(defn create [request]
-  (let [[_ errors] (-> (coast/validate (:params request) [[:required [:post/member :post/body :post/published-at :post/slug :post/title]]])
-                       (select-keys [:post/member :post/body :post/published-at :post/slug :post/title])
-                       (coast/insert)
-                       (coast/rescue))]
+(defn slug [s]
+  (str (-> (.toLowerCase s)
+           (string/replace #"\s+" "-")
+           (string/replace #"[^\w\-]+" "")
+           (string/replace #"\-\-+" "-")
+           (string/replace #"^-+" "")
+           (string/replace #"-+$" ""))
+       "-" (last (string/split (str (coast/uuid)) #"-"))))
+
+(defn create [{:keys [member params] :as request}]
+  (let [xhr?          (coast/xhr? request)
+        params        (if xhr?
+                        params
+                        (assoc params :post/published-at (coast/now)))
+        params        (assoc params :post/slug (slug (:post/title (:params request))))
+        [post errors] (-> (merge params {:post/member (:member/id member)})
+                          (coast/validate [[:required [:post/member]]])
+                          (select-keys [:post/member :post/body :post/published-at :post/slug :post/title])
+                          (coast/insert)
+                          (coast/rescue))]
+    (def xhr? xhr?)
     (if (nil? errors)
-      (coast/redirect-to ::index)
-      (build (merge request errors)))))
+      (if xhr?
+        (coast/ok {:form-params (coast/action-for ::change post)
+                   :url         (coast/url-for ::edit post)}
+                  :json)
+        (coast/redirect-to ::index))
+      (if xhr?
+        (coast/server-error (form (coast/action-for ::create) (merge request errors)))
+        (build (merge request errors))))))
 
 (defn edit [request]
   (let [post (coast/fetch :post (-> request :params :post-id))]
