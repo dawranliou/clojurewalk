@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin*
+Disallow: /assets/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /js/
+Craw-delay: 10
