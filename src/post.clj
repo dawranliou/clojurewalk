@@ -21,9 +21,8 @@
                  (table
                    (thead
                      (tr
-                       (th "member")
-                       (th "body")
                        (th "id")
+                       (th "member")
                        (th "published-at")
                        (th "updated-at")
                        (th "slug")
@@ -35,9 +34,8 @@
                    (tbody
                      (for [row rows]
                        (tr
-                         (td (:post/member row))
-                         (td (:post/body row))
                          (td (:post/id row))
+                         (td (:post/member row))
                          (td (:post/published-at row))
                          (td (:post/updated-at row))
                          (td (:post/slug row))

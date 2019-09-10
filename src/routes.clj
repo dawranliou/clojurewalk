@@ -8,6 +8,9 @@
   (coast/routes
 
     (coast/site
+      (coast/with-layout layouts/doc-layout
+        [:get "/read/:post-slug" :site.article/reader])
+
       (coast/with-layout layouts/layout
         ;; home
         [:get "/" :site.home/index]
@@ -18,7 +21,6 @@
 
         ;; articles
         [:get "/read" :site.article/index]
-        [:get "/read/:slug" :site.article/reader]
 
         ;; about
         [:get "/about" :site.about/index]

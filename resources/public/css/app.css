@@ -97,3 +97,10 @@
 .lift:active {
     transform: translate(-5px, -5px);
 }
+
+blockquote {
+    margin: 0px 0;
+    color: #666;
+    border-left: 3px solid #666;
+    padding-left: 10px;
+}

@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     var preview = document.getElementById("preview-container");
                     preview.innerHTML = text;
                     preview.classList.remove("dn");
+                    document.querySelectorAll('pre code').forEach(function(block) {
+                        hljs.highlightBlock(block);
+                    });
                 });
         }
     });
