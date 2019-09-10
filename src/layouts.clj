@@ -2,7 +2,7 @@
   (:require [hiccup.page :refer [doctype]]
             [components]))
 
-(defn layout [request body]
+(defn layout [request body & scripts]
   (list
     (doctype :html5)
     [:html {:lang "en"}
@@ -42,4 +42,11 @@
        (components/navbar)
        [:main.pt5.bg-white-cw
         body]
-       (components/footer)]]]))
+       (components/footer)
+       scripts]]]))
+
+(defn doc-layout [request body]
+  (layout request body
+          [:script {:src "/js/highlight.pack.js"}]
+          [:script
+           "hljs.initHighlightingOnLoad();"]))
