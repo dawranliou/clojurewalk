@@ -30,7 +30,7 @@
         [:get "/admin/sign-in" :admin/sign-in]
         [:post "/admin/sign-in" :admin/create-session]
         (coast/with
-          middleware/auth
+          middleware/auth middleware/current-member
           [:resource :video]
           [:resource :maillist]
           [:resource :series]
