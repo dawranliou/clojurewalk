@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: data,
                 credentials: 'same-origin'
             })
-                .then(response => response.text())
-                .then(text => {
+                .then(function(response) { return response.text();})
+                .then(function(text) {
                     var preview = document.getElementById("preview-container");
                     preview.innerHTML = text;
                     preview.classList.remove("dn");
