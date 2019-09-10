@@ -47,7 +47,7 @@
       (tbody (tr (td (link-to (coast/url-for :video/index) "Video")))
              (tr (td (link-to (coast/url-for :maillist/index) "Maillist")))
              (tr (td (link-to (coast/url-for :series/index) "Series")))
-             (tr (td "Articles"))))
+             (tr (td (link-to (coast/url-for :post/index) "Post")))))
 
     [:div.mv3
      (coast/form-for ::delete-session

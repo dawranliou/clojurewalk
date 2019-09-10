@@ -34,6 +34,8 @@
           [:resource :video]
           [:resource :maillist]
           [:resource :series]
+          [:resource :post]
+          [:post "/posts/preview" :post/preview]
           [:get "/admin" :admin/dashboard]
           [:post "/admin/sign-out" :admin/delete-session])))
 

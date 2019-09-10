@@ -94,6 +94,12 @@
            :type  "submit"
            :value value}])
 
+(defn submit-block [value]
+  [:input {:class "input-reset pointer dim db bn w-100 f6 br2 ph4 pv3 dib white bg-blue"
+           :type  "submit"
+           :name  "submit"
+           :value value}])
+
 (defn dt [s]
   [:dt {:class "f6 b mt2"} s])
 
@@ -118,6 +124,10 @@
 
 (defn input [m]
   [:input (merge {:class "input-reset ba b--black-20 pa2 mb2 db w-100 outline-0"} m)])
+
+(defn textarea [m & body]
+  [:textarea (merge {:class "input-reset outline-0 pa3 db w-100 bg-near-white bn br1 f4"} m)
+   body])
 
 (defn text-muted [s]
   [:div {:class "f6 tc gray"}
