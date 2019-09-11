@@ -86,27 +86,26 @@
 (defn preview [request]
   (let [{:keys [title body]} (:params request)]
     (coast/ok
-      [:div
-       [:h2.f2.f1-m.f-subheadline-l title]
-       [:div.content
-        (coast/raw (markdown/md-to-html-string body))]]
-      :html)))
+     [:article
+      [:h1.ma0 title]
+      (coast/raw (markdown/md-to-html-string body))]
+     :html)))
 
 (defn form [form-params request]
   [:div
    (coast/form
-     form-params
-     (when (some? (:errors request))
-       (errors (:errors request)))
+    form-params
+    (when (some? (:errors request))
+      (errors (:errors request)))
 
-     (input {:type "text" :placeholder "Title" :name "post/title" :value (-> request :params :post/title)})
+    (input {:type "text" :placeholder "Title" :name "post/title" :value (-> request :params :post/title)})
 
-     [:div.mb3]
-     (textarea {:placeholder "Body" :name "post/body" :style "height: calc(100% - 340px)"}
-               (-> request :params :post/body))
+    [:div.mb3]
+    (textarea {:placeholder "Body" :name "post/body"}
+              (-> request :params :post/body))
 
-     [:div.mb3]
-     (submit-block "Publish"))])
+    [:div.mb3]
+    (submit-block "Publish"))])
 
 (defn build [request]
   (container

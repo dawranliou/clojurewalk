@@ -126,7 +126,7 @@
   [:input (merge {:class "input-reset ba b--black-20 pa2 mb2 db w-100 outline-0"} m)])
 
 (defn textarea [m & body]
-  [:textarea (merge {:class "input-reset outline-0 pa3 db w-100 bg-near-white bn br1 f4"} m)
+  [:textarea (merge {:class "input-reset outline-0 pa3 db w-100 bn br1 vh-50"} m)
    body])
 
 (defn text-muted [s]
