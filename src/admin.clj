@@ -53,134 +53,137 @@
                       (submit "Sign out"))]
 
      ;; series
-     [:h2 [:a.link.dim.blue {:href (coast/url-for :series/index)} "Series"]]
-     (link-to (coast/url-for :series/build) "New series")
+     [:div.mv5
+      [:h2 "Series"]
+      (link-to (coast/url-for :series/build) "New series")
 
-     (table
-      (thead
-       (tr
-        (th "id")
-        (th "updated-at")
-        (th "slug")
-        (th "created-at")
-        (th "title")
-        (th "")
-        (th "")
-        (th "")))
-      (tbody
-       (for [row series]
-         (tr
-          (td (:series/id row))
-          (td (:series/updated-at row))
-          (td (:series/slug row))
-          (td (:series/created-at row))
-          (td (:series/title row))
-          (td
-           (link-to (coast/url-for :series/view row) "View"))
-          (td
-           (link-to (coast/url-for :series/edit row) "Edit"))
-          (td
-           (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))
+      (table
+       (thead
+        (tr
+         (th "id")
+         (th "created-at")
+         (th "updated-at")
+         (th "slug")
+         (th "title")
+         (th "")
+         (th "")
+         (th "")))
+       (tbody
+        (for [row series]
+          (tr
+           (td (:series/id row))
+           (td (:series/created-at row))
+           (td (:series/updated-at row))
+           (td (:series/slug row))
+           (td (:series/title row))
+           (td
+            (link-to (coast/url-for :series/view row) "View"))
+           (td
+            (link-to (coast/url-for :series/edit row) "Edit"))
+           (td
+            (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))]
 
 
      ;; video
 
+     [:div.mv5
+      [:h2 "Video"]
+      (link-to (coast/url-for :video/build) "New video")
 
-     [:h2 [:a.link.dim.blue {:href (coast/url-for :video/index)} "Video"]]
-     (link-to (coast/url-for :video/build) "New video")
-
-     (table
-      (thead
-       (tr
-        (th "id")
-        (th "youtubeid")
-        (th "updated-at")
-        (th "created-at")
-        (th "title")
-        (th "series")
-        (th "")
-        (th "")
-        (th "")))
-      (tbody
-       (for [row video]
-         (tr
-          (td (:video/id row))
-          (td (:video/youtubeid row))
-          (td (:video/updated-at row))
-          (td (:video/created-at row))
-          (td (:video/title row))
-          (td (:video/series row))
-          (td
-           (link-to (coast/url-for :video/view row) "View"))
-          (td
-           (link-to (coast/url-for :video/edit row) "Edit"))
-          (td
-           (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))
+      (table
+       (thead
+        (tr
+         (th "id")
+         (th "created-at")
+         (th "updated-at")
+         (th "youtubeid")
+         (th "title")
+         (th "series")
+         (th "")
+         (th "")
+         (th "")))
+       (tbody
+        (for [row video]
+          (tr
+           (td (:video/id row))
+           (td (:video/created-at row))
+           (td (:video/updated-at row))
+           (td (:video/youtubeid row))
+           (td (:video/title row))
+           (td (:video/series row))
+           (td
+            (link-to (coast/url-for :video/view row) "View"))
+           (td
+            (link-to (coast/url-for :video/edit row) "Edit"))
+           (td
+            (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))]
 
      ;; maillist
-     [:h2 [:a.link.dim.blue {:href (coast/url-for :maillist/index)} "Maillist"]]
+     [:div.mv5
+      [:h2 "Maillist"]
 
-     (link-to (coast/url-for :maillist/build) "New maillist")
+      (link-to (coast/url-for :maillist/build) "New maillist")
 
-     (table
-      (thead
-       (tr
-        (th "id")
-        (th "display-name")
-        (th "email")
-        (th "updated-at")
-        (th "created-at")
-        (th "")
-        (th "")
-        (th "")))
-      (tbody
-       (for [row maillist]
-         (tr
-          (td (:maillist/id row))
-          (td (:maillist/display-name row))
-          (td (:maillist/email row))
-          (td (:maillist/updated-at row))
-          (td (:maillist/created-at row))
-          (td
-           (link-to (coast/url-for :maillist/view row) "View"))
-          (td
-           (link-to (coast/url-for :maillist/edit row) "Edit"))
-          (td
-           (button-to (coast/action-for :maillist/delete row) {:data-confirm "Are you sure?"} "Delete"))))))
+      (table
+       (thead
+        (tr
+         (th "id")
+         (th "created-at")
+         (th "updated-at")
+         (th "display-name")
+         (th "email")
+         (th "")
+         (th "")
+         (th "")))
+       (tbody
+        (for [row maillist]
+          (tr
+           (td (:maillist/id row))
+           (td (:maillist/created-at row))
+           (td (:maillist/updated-at row))
+           (td (:maillist/display-name row))
+           (td (:maillist/email row))
+           (td
+            (link-to (coast/url-for :maillist/view row) "View"))
+           (td
+            (link-to (coast/url-for :maillist/edit row) "Edit"))
+           (td
+            (button-to (coast/action-for :maillist/delete row) {:data-confirm "Are you sure?"} "Delete"))))))]
 
      ;; post
-     [:h2 [:a.link.dim.blue {:href (coast/url-for :post/index)} "Post"]]
-     (link-to (coast/url-for :post/build) "New post")
+     [:div.mv5
+      [:h2 "Post"]
+      (link-to (coast/url-for :post/build) "New post")
 
-     (table
-      (thead
-       (tr
-        (th "id")
-        (th "member")
-        (th "published-at")
-        (th "updated-at")
-        (th "slug")
-        (th "created-at")
-        (th "title")
-        (th "")
-        (th "")
-        (th "")))
-      (tbody
-       (for [row post]
-         (tr
-          (td (:post/id row))
-          (td (:post/member row))
-          (td (:post/published-at row))
-          (td (:post/updated-at row))
-          (td (:post/slug row))
-          (td (:post/created-at row))
-          (td (:post/title row))
-          (td
-           (link-to (coast/url-for :post/view row) "View"))
-          (td
-           (link-to (coast/url-for :post/edit row) "Edit"))
-          (td
-           (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete")))))))))
+      (table
+       (thead
+        (tr
+         (th "id")
+         (th "created-at")
+         (th "updated-at")
+         (th "published-at")
+         (th "member")
+         (th "slug")
+         (th "title")
+         (th "")
+         (th "")
+         (th "")))
+       (tbody
+        (for [row post]
+          (tr
+           (td (:post/id row))
+           (td (:post/created-at row))
+           (td (:post/updated-at row))
+           (td (:post/published-at row))
+           (td (:post/member row))
+           (td (:post/slug row))
+           (td (:post/title row))
+           (td
+            (link-to (coast/url-for :post/view row) "View"))
+           (td
+            (link-to (coast/url-for :post/edit row) "Edit"))
+           (td
+            (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))])))
 
 (comment
   ;; sign up a admin user

@@ -39,7 +39,6 @@
        [:get "/admin" :admin/dashboard]
        [:post "/admin/sign-out" :admin/delete-session]
 
-       [:get    "/videos"           :video/index]
        [:get    "/videos/:video-id" :video/view]
        [:get    "/videos/build"    :video/build]
        [:get    "/videos/:video-id/edit" :video/edit]
@@ -47,7 +46,6 @@
        [:put    "/videos/:video-id" :video/change]
        [:delete "/videos/:video-id" :video/delete]
 
-       [:get    "/maillists"          :maillist/index]
        [:get    "/maillists/:maillist-id"      :maillist/view]
        [:get    "/maillists/build"    :maillist/build]
        [:get    "/maillists/:maillist-id/edit" :maillist/edit]
@@ -55,7 +53,6 @@
        [:put    "/maillists/:maillist-id"      :maillist/change]
        [:delete "/maillists/:maillist-id"      :maillist/delete]
 
-       [:get    "/series"          :series/index]
        [:get    "/series/:series-id"      :series/view]
        [:get    "/series/build"    :series/build]
        [:get    "/series/:series-id/edit" :series/edit]
@@ -63,7 +60,6 @@
        [:put    "/series/:series-id"      :series/change]
        [:delete "/series/:series-id"      :series/delete]
 
-       [:get    "/posts"          :post/index]
        [:get    "/posts/:post-id"      :post/view]
        [:get    "/posts/build"    :post/build]
        [:get    "/posts/:post-id/edit" :post/edit]

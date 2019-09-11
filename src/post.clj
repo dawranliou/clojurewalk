@@ -4,50 +4,6 @@
             [markdown.core :as markdown]
             [components :refer [submit-block textarea container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
 
-(defn index [request]
-  (let [rows (coast/q '[:select *
-                        :from post
-                        :order id
-                        :limit 10])]
-    (container {:mw 8}
-               (when (not (empty? rows))
-                 (link-to (coast/url-for ::build) "New post"))
-
-               (when (empty? rows)
-                 (tc
-                  (link-to (coast/url-for ::build) "New post")))
-
-               (when (not (empty? rows))
-                 (table
-                  (thead
-                   (tr
-                    (th "id")
-                    (th "member")
-                    (th "published-at")
-                    (th "updated-at")
-                    (th "slug")
-                    (th "created-at")
-                    (th "title")
-                    (th "")
-                    (th "")
-                    (th "")))
-                  (tbody
-                   (for [row rows]
-                     (tr
-                      (td (:post/id row))
-                      (td (:post/member row))
-                      (td (:post/published-at row))
-                      (td (:post/updated-at row))
-                      (td (:post/slug row))
-                      (td (:post/created-at row))
-                      (td (:post/title row))
-                      (td
-                       (link-to (coast/url-for ::view row) "View"))
-                      (td
-                       (link-to (coast/url-for ::edit row) "Edit"))
-                      (td
-                       (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
-
 (defn view [request]
   (let [id   (-> request :params :post-id)
         post (coast/fetch :post id)]
@@ -68,7 +24,7 @@
                 (dt "title")
                 (dd (:post/title post)))
                (mr2
-                (link-to (coast/url-for ::index) "List"))
+                (link-to (coast/url-for ::admin/dashboard) "List"))
                (mr2
                 (link-to (coast/url-for ::edit {::id id}) "Edit"))
                (mr2
@@ -148,7 +104,7 @@
         (coast/ok {:form-params (coast/action-for ::change post)
                    :url         (coast/url-for ::edit post)}
                   :json)
-        (coast/redirect-to ::index))
+        (coast/redirect-to ::admin/dashboard))
       (if xhr?
         (coast/server-error (form (coast/action-for ::create) (merge request errors)))
         (build (merge request errors))))))
@@ -192,7 +148,7 @@
     (if (coast/xhr? request)
       (coast/ok {} :json)
       (if (nil? errors)
-        (coast/redirect-to ::index)
+        (coast/redirect-to ::admin/dashboard)
         (edit (merge request errors))))))
 
 (defn delete [request]
@@ -200,6 +156,6 @@
                        (coast/delete)
                        (coast/rescue))]
     (if (nil? errors)
-      (coast/redirect-to ::index)
-      (-> (coast/redirect-to ::index)
+      (coast/redirect-to ::admin/dashboard)
+      (-> (coast/redirect-to ::admin/dashboard)
           (coast/flash "Something went wrong!")))))

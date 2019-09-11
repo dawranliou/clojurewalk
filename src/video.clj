@@ -2,50 +2,6 @@
   (:require [coast]
             [components :refer [container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
 
-(defn index [request]
-  (let [rows (coast/q '[:select *
-                        :from video
-                        :order id
-                        :limit 10])]
-    (container {:mw 8}
-               (when (not (empty? rows))
-                 (link-to (coast/url-for ::build) "New video"))
-
-               (when (empty? rows)
-                 (tc
-                  (link-to (coast/url-for ::build) "New video")))
-
-               (when (not (empty? rows))
-                 (table
-                  (thead
-                   (tr
-                    (th "youtubeid")
-                    (th "id")
-                    (th "updated-at")
-                    (th "created-at")
-                    (th "title")
-                    (th "series")
-                    (th "description")
-                    (th "")
-                    (th "")
-                    (th "")))
-                  (tbody
-                   (for [row rows]
-                     (tr
-                      (td (:video/youtubeid row))
-                      (td (:video/id row))
-                      (td (:video/updated-at row))
-                      (td (:video/created-at row))
-                      (td (:video/title row))
-                      (td (:video/series row))
-                      (td (:video/description row))
-                      (td
-                       (link-to (coast/url-for ::view row) "View"))
-                      (td
-                       (link-to (coast/url-for ::edit row) "Edit"))
-                      (td
-                       (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
-
 (defn view [request]
   (let [id    (-> request :params :video-id)
         video (coast/fetch :video id)]
@@ -63,7 +19,7 @@
                 (dt "description")
                 (dd (:video/description video)))
                (mr2
-                (link-to (coast/url-for ::index) "List"))
+                (link-to (coast/url-for :admin/dashboard) "List"))
                (mr2
                 (link-to (coast/url-for ::edit {::id id}) "Edit"))
                (mr2
@@ -96,7 +52,7 @@
                              (label {:for "video/description"} "description")
                              (input {:type "text" :name "video/description" :value (-> request :params :video/description)})
 
-                             (link-to (coast/url-for ::index) "Cancel")
+                             (link-to (coast/url-for :admin/dashboard) "Cancel")
                              (submit "New video"))))
 
 (defn create [request]
@@ -105,7 +61,7 @@
                        (coast/insert)
                        (coast/rescue))]
     (if (nil? errors)
-      (coast/redirect-to ::index)
+      (coast/redirect-to :admin/dashboard)
       (build (merge request errors)))))
 
 (defn edit [request]
@@ -127,7 +83,7 @@
                                (label {:for "video/description"} "description")
                                (input {:type "text" :name "video/description" :value (:video/description video)})
 
-                               (link-to (coast/url-for ::index) "Cancel")
+                               (link-to (coast/url-for :admin/dashboard) "Cancel")
                                (submit "Update video")))))
 
 (defn change [request]
@@ -139,7 +95,7 @@
                        (coast/update)
                        (coast/rescue))]
     (if (nil? errors)
-      (coast/redirect-to ::index)
+      (coast/redirect-to :admin/dashboard)
       (edit (merge request errors)))))
 
 (defn delete [request]
@@ -147,8 +103,8 @@
                        (coast/delete)
                        (coast/rescue))]
     (if (nil? errors)
-      (coast/redirect-to ::index)
-      (-> (coast/redirect-to ::index)
+      (coast/redirect-to :admin/dashboard)
+      (-> (coast/redirect-to :admin/dashboard)
           (coast/flash "Something went wrong!")))))
 
 (comment
