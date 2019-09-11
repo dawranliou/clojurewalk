@@ -17,7 +17,7 @@
 
       ;; videos
       [:get "/watch" :site.video/index]
-      [:get "/watch/:video-youtubeid" :site.video/player]
+      [:get "/watch/:video-slug" :site.video/player]
       [:get "/watch/series/:series-slug" :site.video/series]
 
       ;; articles

@@ -67,7 +67,6 @@
          (th "slug")
          (th "title")
          (th "")
-         (th "")
          (th "")))
        (tbody
         (for [row series]
@@ -77,8 +76,6 @@
            (td (:series/updated-at row))
            (td (:series/slug row))
            (td (:series/title row))
-           (td
-            (link-to (coast/url-for :site.video/series row) "View"))
            (td
             (link-to (coast/url-for :series/edit row) "Edit"))
            (td
@@ -98,9 +95,9 @@
          (th "created-at")
          (th "updated-at")
          (th "youtubeid")
+         (th "slug")
          (th "title")
          (th "series")
-         (th "")
          (th "")
          (th "")))
        (tbody
@@ -110,10 +107,9 @@
            (td (:video/created-at row))
            (td (:video/updated-at row))
            (td (:video/youtubeid row))
+           (td (:video/slug row))
            (td (:video/title row))
            (td (:video/series row))
-           (td
-            (link-to (coast/url-for :site.video/player row) "View"))
            (td
             (link-to (coast/url-for :video/edit row) "Edit"))
            (td
@@ -164,7 +160,6 @@
          (th "slug")
          (th "title")
          (th "")
-         (th "")
          (th "")))
        (tbody
         (for [row post]
@@ -176,8 +171,6 @@
            (td (:post/member row))
            (td (:post/slug row))
            (td (:post/title row))
-           (td
-            (link-to (coast/url-for :site.article/reader row) "View"))
            (td
             (link-to (coast/url-for :post/edit row) "Edit"))
            (td

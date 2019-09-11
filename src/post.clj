@@ -1,7 +1,7 @@
 (ns post
-  (:require [clojure.string :as string]
-            coast
+  (:require coast
             [components :refer [container dd dt input submit-block textarea]]
+            [helpers :as h]
             [markdown.core :as markdown]))
 
 (defn errors [m]
@@ -52,21 +52,12 @@
    [:div {:id "form-container"}
     (form (coast/action-for ::create) request)]))
 
-(defn slug [s]
-  (str (-> (.toLowerCase s)
-           (string/replace #"\s+" "-")
-           (string/replace #"[^\w\-]+" "")
-           (string/replace #"\-\-+" "-")
-           (string/replace #"^-+" "")
-           (string/replace #"-+$" ""))
-       "-" (last (string/split (str (coast/uuid)) #"-"))))
-
 (defn create [{:keys [member params] :as request}]
   (let [xhr?          (coast/xhr? request)
         params        (if xhr?
                         params
                         (assoc params :post/published-at (coast/now)))
-        params        (assoc params :post/slug (slug (:post/title (:params request))))
+        params        (assoc params :post/slug (h/slug (:post/title (:params request))))
         [post errors] (-> (merge params {:post/member (:member/id member)})
                           (coast/validate [[:required [:post/member]]])
                           (select-keys [:post/member :post/body :post/published-at :post/slug :post/title])
@@ -106,7 +97,7 @@
   (let [post       (coast/fetch :post (:post-id params))
         post       (if (some? (:post-slug post))
                      post
-                     (assoc post :post/slug (slug (:post/title params))))
+                     (assoc post :post/slug (h/slug (:post/title params))))
         post       (case (:submit params)
                      "Publish"      (if (some? (:post/published-at post))
                                       post

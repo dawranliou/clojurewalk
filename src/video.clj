@@ -1,6 +1,7 @@
 (ns video
   (:require coast
-            [components :refer [container dd dt input label link-to submit]]))
+            [components :refer [container dd dt input label link-to submit]]
+            [helpers :as h]))
 
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}
@@ -32,9 +33,10 @@
                              (link-to (coast/url-for :admin/dashboard) "Cancel")
                              (submit "New video"))))
 
-(defn create [request]
-  (let [[_ errors] (-> (coast/validate (:params request) [[:required [:video/youtubeid :video/title :video/series :video/description]]])
-                       (select-keys [:video/youtubeid :video/title :video/series :video/description])
+(defn create [{:keys [params] :as request}]
+  (let [[_ errors] (-> (coast/validate params [[:required [:video/youtubeid :video/title]]])
+                       (assoc :video/slug (h/slug (:video/title params)))
+                       (select-keys [:video/youtubeid :video/title :video/series :video/description :video/slug])
                        (coast/insert)
                        (coast/rescue))]
     (if (nil? errors)
@@ -50,6 +52,9 @@
                (coast/form-for ::change video
                                (label {:for "video/youtubeid"} "youtubeid")
                                (input {:type "text" :name "video/youtubeid" :value (:video/youtubeid video)})
+
+                               (label {:for "video/slug"} "slug")
+                               (input {:type "text" :name "video/slug" :value (:video/slug video)})
 
                                (label {:for "video/title"} "title")
                                (input {:type "text" :name "video/title" :value (:video/title video)})
@@ -67,8 +72,8 @@
   (let [video      (coast/fetch :video (-> request :params :video-id))
         [_ errors] (-> (select-keys video [:video/id])
                        (merge (:params request))
-                       (coast/validate [[:required [:video/id :video/youtubeid :video/title :video/series :video/description]]])
-                       (select-keys [:video/id :video/youtubeid :video/title :video/series :video/description])
+                       (coast/validate [[:required [:video/id :video/youtubeid :video/title :video/slug]]])
+                       (select-keys [:video/id :video/youtubeid :video/title :video/series :video/description :video/slug])
                        (coast/update)
                        (coast/rescue))]
     (if (nil? errors)
