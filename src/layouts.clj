@@ -47,6 +47,5 @@
 
 (defn doc-layout [request body]
   (layout request body
-          [:script {:src "/js/highlight.pack.js"}]
           [:script
            "hljs.initHighlightingOnLoad();"]))
