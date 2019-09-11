@@ -24,7 +24,7 @@
                 (dt "title")
                 (dd (:post/title post)))
                (mr2
-                (link-to (coast/url-for ::admin/dashboard) "List"))
+                (link-to (coast/url-for :admin/dashboard) "List"))
                (mr2
                 (link-to (coast/url-for ::edit {::id id}) "Edit"))
                (mr2
@@ -104,7 +104,7 @@
         (coast/ok {:form-params (coast/action-for ::change post)
                    :url         (coast/url-for ::edit post)}
                   :json)
-        (coast/redirect-to ::admin/dashboard))
+        (coast/redirect-to :admin/dashboard))
       (if xhr?
         (coast/server-error (form (coast/action-for ::create) (merge request errors)))
         (build (merge request errors))))))
@@ -148,7 +148,7 @@
     (if (coast/xhr? request)
       (coast/ok {} :json)
       (if (nil? errors)
-        (coast/redirect-to ::admin/dashboard)
+        (coast/redirect-to :admin/dashboard)
         (edit (merge request errors))))))
 
 (defn delete [request]
@@ -156,6 +156,6 @@
                        (coast/delete)
                        (coast/rescue))]
     (if (nil? errors)
-      (coast/redirect-to ::admin/dashboard)
-      (-> (coast/redirect-to ::admin/dashboard)
+      (coast/redirect-to :admin/dashboard)
+      (-> (coast/redirect-to :admin/dashboard)
           (coast/flash "Something went wrong!")))))
