@@ -1,5 +1,6 @@
 (ns components
-  (:require [coast]))
+  (:require coast
+            [helpers :refer [keyname]]))
 
 (defn navbar
   []
@@ -126,7 +127,7 @@
   [:input (merge {:class "input-reset ba b--black-20 pa2 mb2 db w-100 outline-0"} m)])
 
 (defn textarea [m & body]
-  [:textarea (merge {:class "input-reset outline-0 pa3 db w-100 bg-near-white bn br1 f4"} m)
+  [:textarea (merge {:class "input-reset outline-0 pa3 db w-100 bg-near-white bn br1 f4 vh-75"} m)
    body])
 
 (defn text-muted [s]
@@ -182,3 +183,46 @@
 
 (comment
   (banner "hi" :type :info))
+
+(defn errors [m]
+  [:div {:class "bg-red white pa2 mb4 br1"}
+   [:h2 {:class "f4 f-subheadline"} "Errors Detected"]
+   [:dl
+    (for [[k v] m]
+      [:div {:class "mb3"}
+       (dt (str k))
+       (dd v)])]])
+
+(defn form [form-params request title-key body-key]
+  [:div
+   (coast/form
+    form-params
+    (when (some? (:errors request))
+      (errors (:errors request)))
+
+    (input {:type "text" :placeholder "Title" :name (keyname title-key) :value (get-in request [:params title-key])})
+
+    [:div.mb3]
+    (textarea {:placeholder "Body" :name (keyname body-key)}
+              (get-in request [:params body-key]))
+
+    [:div.mb3]
+    (submit-block "Publish"))])
+
+(defn markdown-editor
+  [update-action request title-key body-key]
+  [:div
+   [:div.cf
+    [:div.fl
+     [:div {:id "status" :class "f6 gray mb2"} (coast/raw "Saved")]]
+    [:div.fr
+     [:a {:class "blue pointer dim mr3" :id "edit"} "Edit"]
+     [:a {:class "gray pointer dim mr3" :id "preview"} "Preview"]
+     (coast/form (merge update-action {:class "dib ma0"})
+                 [:input {:class "input-reset bn bg-transparent gray pointer dim"
+                          :type  "submit"
+                          :name  "submit"
+                          :value "Un-publish"}])]]
+   [:div {:id "preview-container"}]
+   [:div {:id "form-container"}
+    (form update-action request title-key body-key)]])

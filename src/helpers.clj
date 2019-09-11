@@ -8,3 +8,5 @@
                 (count s))]
       (str (subs s 0 end)
            "..."))))
+
+(defn keyname [key] (str (namespace key) "/" (name key)))
