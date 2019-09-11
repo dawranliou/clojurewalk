@@ -2,7 +2,7 @@
   (:require coast
             [components :refer [subscribe-to-newsletter]]))
 
-(defn index [request]
+(defn index [_]
   [:div.bg-green-cw
    [:header.bg-green-cw.sans-serif
     [:div.mw9.center.pa4.pt5-ns.ph7-l

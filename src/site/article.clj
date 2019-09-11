@@ -5,7 +5,7 @@
             [markdown.core :as markdown]))
 
 (defn index
-  [request]
+  [_]
   (let [posts (coast/q '[:select *
                          :from post
                          :where ["published_at is not null"]

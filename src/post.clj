@@ -63,7 +63,6 @@
                           (select-keys [:post/member :post/body :post/published-at :post/slug :post/title])
                           (coast/insert)
                           (coast/rescue))]
-    (def xhr? xhr?)
     (if (nil? errors)
       (if xhr?
         (coast/ok {:form-params (coast/action-for ::change post)

@@ -3,7 +3,7 @@
             [components :refer [container]]))
 
 (defn card
-  [title link {:keys [background-image] :as opts}]
+  [title link {:keys [background-image]}]
   [:div.fl.w-100.h5.w-30-l.cover.bg-center.dt.ba.br2.mb3
    (when background-image {:class "hide-child" :style background-image})
    [:a.link.dtc.v-mid.w-100.h-100.pa5.tc
@@ -15,7 +15,7 @@
     title]])
 
 (defn index
-  [request]
+  [_]
   (let [serieses (coast/q '[:pull series/title series/slug {:series/videos [video/title video/youtubeid video/slug]} :from series])]
     (container
      {:mw 8}
@@ -23,7 +23,7 @@
        [:div.cf.mv3
         [:h2.f3.mono.bg-green-cw.pa4 (str "> " title " (" (count videos) " episodes)")]
         [:div.flex.flex-column.flex-row-l.justify-between
-         (for [{:video/keys [title youtubeid slug] :as video} (take 2 videos)]
+         (for [{:video/keys [title youtubeid] :as video} (take 2 videos)]
            (card title
                  (coast/url-for :site.video/player video)
                  {:background-image (str "background-image: url(https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg)")}))
@@ -45,7 +45,7 @@
         [:h2.f3.mono.bg-green-cw.pa4 (str "> " series)]
         (for [row (partition 3 3 (repeat nil) videos)]
           [:div.flex.flex-column.flex-row-l.justify-between
-           (for [{:video/keys [title youtubeid slug] :as video} row]
+           (for [{:video/keys [title youtubeid] :as video} row]
              (if video
                (card title
                      (coast/url-for :site.video/player video)
@@ -55,7 +55,7 @@
        [:h1 "Sorry we cannot find your series."]))))
 
 (defn player
-  [{:keys [params] :as request}]
+  [{:keys [params] :as _}]
   (let [video-slug  (:video-slug params)
         row         (coast/pluck
                      '[:select * :from video :where [slug ?video-slug]]

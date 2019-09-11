@@ -35,12 +35,12 @@
           (assoc :session {:member/email email})))))
 
 (defn delete-session
-  [request]
+  [_]
   (-> (coast/redirect-to ::sign-in)
       (assoc :session nil)))
 
 (defn dashboard
-  [request]
+  [_]
   (let [video    (coast/q '[:select * :from video])
         maillist (coast/q '[:select * :from maillist])
         series   (coast/q '[:select * :from series])
