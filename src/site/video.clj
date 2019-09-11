@@ -44,7 +44,7 @@
      [:div.cf.mv3
       [:h2.f3.mono.bg-green-cw.pa4 (str "> " series)]
       (for [row (partition 3 3 (repeat nil) videos)]
-        [:div.flex.justify-between
+        [:div.flex.flex-column.flex-row-l.justify-between
          (for [{:video/keys [title youtubeid] :as video} row]
            (if video
              (card title
