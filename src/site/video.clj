@@ -1,6 +1,6 @@
 (ns site.video
-  (:require [components :refer [container]]
-            [coast]))
+  (:require coast
+            [components :refer [container]]))
 
 (defn card
   [title link {:keys [background-image] :as opts}]

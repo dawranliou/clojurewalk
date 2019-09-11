@@ -1,8 +1,8 @@
 (ns site.article
-  (:require [coast]
-            [markdown.core :as markdown]
+  (:require coast
             [components :refer [container]]
-            [helpers]))
+            helpers
+            [markdown.core :as markdown]))
 
 (defn index
   [request]

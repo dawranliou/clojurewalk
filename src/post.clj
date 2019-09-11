@@ -1,8 +1,8 @@
 (ns post
-  (:require [coast]
-            [clojure.string :as string]
-            [markdown.core :as markdown]
-            [components :refer [submit-block textarea container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
+  (:require [clojure.string :as string]
+            coast
+            [components :refer [container dd dt input submit-block textarea]]
+            [markdown.core :as markdown]))
 
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}

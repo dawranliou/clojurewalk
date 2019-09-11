@@ -1,8 +1,9 @@
 (ns admin
-  (:require
-   [buddy.hashers :as hashers]
-   [coast]
-   [components :refer [container submit input link-to table thead tbody th tr td button-to]]))
+  (:require [buddy.hashers :as hashers]
+            coast
+            [components
+             :refer
+             [button-to container input link-to submit table tbody td th thead tr]]))
 
 (defn sign-in
   [request]

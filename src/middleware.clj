@@ -1,7 +1,6 @@
 (ns middleware
-  (:require
-   [coast]
-   [coast.responses]))
+  (:require coast
+            coast.responses))
 
 (defn auth
   [handler]

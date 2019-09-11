@@ -1,6 +1,6 @@
 (ns site.about
-  (:require [coast]
-            [components :refer [container subscribe-to-newsletter banner]]))
+  (:require coast
+            [components :refer [banner container subscribe-to-newsletter]]))
 
 (def about-content
   ["Hi, fellow beginner Clojurists, I want to help you to know your craft.

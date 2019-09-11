@@ -1,9 +1,9 @@
 (ns server
-  (:require [coast]
+  (:gen-class)
+  (:require coast
             [coast.env :as env]
-            [routes]
-            [nrepl.server :as nrepl])
-  (:gen-class))
+            [nrepl.server :as nrepl]
+            routes))
 
 (def app (coast/app {:routes routes/routes}))
 

@@ -1,6 +1,6 @@
 (ns series
-  (:require [coast]
-            [components :refer [container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
+  (:require coast
+            [components :refer [container dd dt input label link-to submit]]))
 
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}

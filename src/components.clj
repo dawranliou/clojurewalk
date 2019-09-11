@@ -1,5 +1,5 @@
 (ns components
-  (:require [coast]))
+  (:require coast))
 
 (defn navbar
   []

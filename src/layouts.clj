@@ -1,6 +1,6 @@
 (ns layouts
-  (:require [hiccup.page :refer [doctype]]
-            [components]))
+  (:require components
+            [hiccup.page :refer [doctype]]))
 
 (defn layout [request body & scripts]
   (list

@@ -1,8 +1,8 @@
 (ns routes
-  (:require [coast]
-            [layouts]
-            [middleware]
-            [admin]))
+  (:require admin
+            coast
+            layouts
+            middleware))
 
 (def routes
   (coast/routes

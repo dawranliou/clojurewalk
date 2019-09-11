@@ -1,5 +1,5 @@
 (ns site.home
-  (:require [coast]
+  (:require coast
             [components :refer [subscribe-to-newsletter]]))
 
 (defn index [request]
