@@ -19,15 +19,17 @@
   (let [serieses (coast/q '[:pull series/title series/slug {:series/videos [video/title video/youtubeid video/slug]} :from series])]
     (container
      {:mw 8}
-     (for [{:series/keys [title videos] :as series} serieses]
+     (for [{:series/keys [title videos] :as series} serieses
+           :let                                     [link (coast/url-for ::series series)]]
        [:div.cf.mv3
-        [:h2.f3.mono.bg-green-cw.pa4 (str "> " title " (" (count videos) " episodes)")]
+        [:h2.f3.mono.bg-green-cw.pa4
+         [:a.link.dim.black-cw {:href link} (str "> " title " (" (count videos) " episodes)")]]
         [:div.flex.flex-column.flex-row-l.justify-between
          (for [{:video/keys [title youtubeid] :as video} (take 2 videos)]
            (card title
                  (coast/url-for :site.video/player video)
                  {:background-image (str "background-image: url(https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg)")}))
-         (card "Watch series >>" (coast/url-for ::series series) {})]]))))
+         (card "Watch series >>" link {})]]))))
 
 (defn series
   [request]
@@ -41,8 +43,10 @@
     (container
      {:mw 8}
      (if (some? videos)
-       [:div.cf.mv3
-        [:h2.f3.mono.bg-green-cw.pa4 (str "> " series)]
+       [:div
+        [:div.dt.w-100.mv3
+         [:a.dtc.w-10.tc.f4.f3-l.mono.link.dim.bg-black-cw.white.pa4 {:href (coast/url-for ::index)} "<"]
+         [:h2.dtc.w-90.f4.f3-l.mono.bg-green-cw.pa4 series]]
         (for [row (partition 3 3 (repeat nil) videos)]
           [:div.flex.flex-column.flex-row-l.justify-between
            (for [{:video/keys [title youtubeid] :as video} row]
