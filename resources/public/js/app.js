@@ -69,11 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             document.getElementById("status").textContent = "Unsaved";
             var form = e.target.form;
-            var status = document.getElementById("status").textContent;
 
             // auto save if nothing happens in the next 5 sec
             timer = setTimeout(function () {
-                status = "Saving...";
+                document.getElementById("status").textContent = "Saving...";
 
                 var url = form.attributes.action.value;
                 var method = form.attributes.method.value;
@@ -84,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 request.onload = function(event) {
                     timer = null;
                     if (request.status == 200) {
-                        status = "Saved";
+                        document.getElementById("status").textContent = "Saved";
                         var response = JSON.parse(request.response);
                         var url = response.url;
                         if (saveCount === 0 && !!url) {
@@ -110,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 };
                 request.send(data);
-            }, 5000);
+            }, 3000);
         }
     });
 });
