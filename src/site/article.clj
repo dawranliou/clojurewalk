@@ -11,20 +11,20 @@
                          :where ["published_at is not null"]
                          :order published_at desc])]
     (container
-      {:mw 7}
-      (for [{:post/keys [title body published-at] :as post} posts]
-        [:article.mb5
-         [:time.f6.gray.mb1.dib
-          {:data-seconds published-at
-           :data-date    true}
-          (coast/strftime
-            (coast/datetime published-at "US/Mountain")
-            "MMMM dd, YYYY")]
-         [:h1.ma0 title]
-         [:p.pb0.mb1 (helpers/ellipsis body 200)]
-         [:a.underline.blud
-          {:href (coast/url-for ::reader post)}
-          "Read More"]]))))
+     {:mw 7}
+     (for [{:post/keys [title body published-at] :as post} posts]
+       [:article.mb5
+        [:time.f6.gray.mb1.dib
+         {:data-seconds published-at
+          :data-date    true}
+         (coast/strftime
+          (coast/datetime published-at "US/Mountain")
+          "MMMM dd, YYYY")]
+        [:h1.ma0 title]
+        [:p.pb0.mb1 (helpers/ellipsis body 200)]
+        [:a.underline.blud
+         {:href (coast/url-for ::reader post)}
+         "Read More"]]))))
 
 (defn reader
   [request]
@@ -37,14 +37,14 @@
     (if (nil? post)
       (coast/raise {:not-found true})
       (container
-        {:mw 7}
-        [:article
-         [:time.f6.gray.mb1.dib
-          {:data-seconds published-at
-           :data-date    true}
-          (coast/strftime
-            (coast/datetime published-at "US/Mountain")
-            "MMMM dd, YYYY")]
-         [:h1.ma0 title]
-         (coast/raw
-           (markdown/md-to-html-string body))]))))
+       {:mw 7}
+       [:article
+        [:time.f6.gray.mb1.dib
+         {:data-seconds published-at
+          :data-date    true}
+         (coast/strftime
+          (coast/datetime published-at "US/Mountain")
+          "MMMM dd, YYYY")]
+        [:h1.ma0 title]
+        (coast/raw
+         (markdown/md-to-html-string body))]))))

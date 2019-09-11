@@ -3,7 +3,7 @@
 
 (defn associations []
   (tables
-    (table :video
-           (belongs-to :series))
-    (table :series
-           (has-many :videos))))
+   (table :video
+          (belongs-to :series))
+   (table :series
+          (has-many :videos))))

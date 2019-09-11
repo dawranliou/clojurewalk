@@ -15,64 +15,64 @@
 
                (when (empty? rows)
                  (tc
-                   (link-to (coast/url-for ::build) "New post")))
+                  (link-to (coast/url-for ::build) "New post")))
 
                (when (not (empty? rows))
                  (table
-                   (thead
+                  (thead
+                   (tr
+                    (th "id")
+                    (th "member")
+                    (th "published-at")
+                    (th "updated-at")
+                    (th "slug")
+                    (th "created-at")
+                    (th "title")
+                    (th "")
+                    (th "")
+                    (th "")))
+                  (tbody
+                   (for [row rows]
                      (tr
-                       (th "id")
-                       (th "member")
-                       (th "published-at")
-                       (th "updated-at")
-                       (th "slug")
-                       (th "created-at")
-                       (th "title")
-                       (th "")
-                       (th "")
-                       (th "")))
-                   (tbody
-                     (for [row rows]
-                       (tr
-                         (td (:post/id row))
-                         (td (:post/member row))
-                         (td (:post/published-at row))
-                         (td (:post/updated-at row))
-                         (td (:post/slug row))
-                         (td (:post/created-at row))
-                         (td (:post/title row))
-                         (td
-                           (link-to (coast/url-for ::view row) "View"))
-                         (td
-                           (link-to (coast/url-for ::edit row) "Edit"))
-                         (td
-                           (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
+                      (td (:post/id row))
+                      (td (:post/member row))
+                      (td (:post/published-at row))
+                      (td (:post/updated-at row))
+                      (td (:post/slug row))
+                      (td (:post/created-at row))
+                      (td (:post/title row))
+                      (td
+                       (link-to (coast/url-for ::view row) "View"))
+                      (td
+                       (link-to (coast/url-for ::edit row) "Edit"))
+                      (td
+                       (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
 
 (defn view [request]
   (let [id   (-> request :params :post-id)
         post (coast/fetch :post id)]
     (container {:mw 8}
                (dl
-                 (dt "member")
-                 (dd (:post/member post))
+                (dt "member")
+                (dd (:post/member post))
 
-                 (dt "body")
-                 (dd (:post/body post))
+                (dt "body")
+                (dd (:post/body post))
 
-                 (dt "published-at")
-                 (dd (:post/published-at post))
+                (dt "published-at")
+                (dd (:post/published-at post))
 
-                 (dt "slug")
-                 (dd (:post/slug post))
+                (dt "slug")
+                (dd (:post/slug post))
 
-                 (dt "title")
-                 (dd (:post/title post)))
+                (dt "title")
+                (dd (:post/title post)))
                (mr2
-                 (link-to (coast/url-for ::index) "List"))
+                (link-to (coast/url-for ::index) "List"))
                (mr2
-                 (link-to (coast/url-for ::edit {::id id}) "Edit"))
+                (link-to (coast/url-for ::edit {::id id}) "Edit"))
                (mr2
-                 (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
+                (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
 
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}
@@ -109,18 +109,18 @@
 
 (defn build [request]
   (container
-    {:mw 7}
-    [:div.cf
-     [:div.fl
-      [:div.f6.gray.mb2
-       {:id "status"}
-       (coast/raw "Unsaved")]]
-     [:div.fr
-      [:a.blue.pointer.mr3 {:id "edit"} "Edit"]
-      [:a.blue.pointer {:id "preview"} "Preview"]]]
-    [:div {:id "preview-container"}]
-    [:div {:id "form-container"}
-     (form (coast/action-for ::create) request)]))
+   {:mw 7}
+   [:div.cf
+    [:div.fl
+     [:div.f6.gray.mb2
+      {:id "status"}
+      (coast/raw "Unsaved")]]
+    [:div.fr
+     [:a.blue.pointer.mr3 {:id "edit"} "Edit"]
+     [:a.blue.pointer {:id "preview"} "Preview"]]]
+   [:div {:id "preview-container"}]
+   [:div {:id "form-container"}
+    (form (coast/action-for ::create) request)]))
 
 (defn slug [s]
   (str (-> (.toLowerCase s)
@@ -166,7 +166,7 @@
                              [:input {:class "input-reset bn bg-transparent gray pointer dim"
                                       :type  "submit"
                                       :name  "submit"
-                                      :value "Un-publish"}])]]
+                                      :value "Unpublish"}])]]
 
                [:div {:id "preview-container"}]
                [:div {:id "form-container"}

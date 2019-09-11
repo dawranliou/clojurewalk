@@ -34,8 +34,7 @@
         [:h2.fl.w-100.w-50-ns.ph3-ns
          [:a.link.dim.black-cw
           {:href (coast/url-for :site.video/player {:youtubeid youtubeid})}
-          title]]
-        ])
+          title]]])
      [:p.f3.tc
       [:a.link.dim.black-cw.underline
        {:href (coast/url-for :site.video/index)}

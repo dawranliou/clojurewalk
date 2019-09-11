@@ -13,61 +13,61 @@
 
                (when (empty? rows)
                  (tc
-                   (link-to (coast/url-for ::build) "New video")))
+                  (link-to (coast/url-for ::build) "New video")))
 
                (when (not (empty? rows))
                  (table
-                   (thead
+                  (thead
+                   (tr
+                    (th "youtubeid")
+                    (th "id")
+                    (th "updated-at")
+                    (th "created-at")
+                    (th "title")
+                    (th "series")
+                    (th "description")
+                    (th "")
+                    (th "")
+                    (th "")))
+                  (tbody
+                   (for [row rows]
                      (tr
-                       (th "youtubeid")
-                       (th "id")
-                       (th "updated-at")
-                       (th "created-at")
-                       (th "title")
-                       (th "series")
-                       (th "description")
-                       (th "")
-                       (th "")
-                       (th "")))
-                   (tbody
-                     (for [row rows]
-                       (tr
-                         (td (:video/youtubeid row))
-                         (td (:video/id row))
-                         (td (:video/updated-at row))
-                         (td (:video/created-at row))
-                         (td (:video/title row))
-                         (td (:video/series row))
-                         (td (:video/description row))
-                         (td
-                           (link-to (coast/url-for ::view row) "View"))
-                         (td
-                           (link-to (coast/url-for ::edit row) "Edit"))
-                         (td
-                           (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
+                      (td (:video/youtubeid row))
+                      (td (:video/id row))
+                      (td (:video/updated-at row))
+                      (td (:video/created-at row))
+                      (td (:video/title row))
+                      (td (:video/series row))
+                      (td (:video/description row))
+                      (td
+                       (link-to (coast/url-for ::view row) "View"))
+                      (td
+                       (link-to (coast/url-for ::edit row) "Edit"))
+                      (td
+                       (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
 
 (defn view [request]
   (let [id    (-> request :params :video-id)
         video (coast/fetch :video id)]
     (container {:mw 8}
                (dl
-                 (dt "youtubeid")
-                 (dd (:video/youtubeid video))
+                (dt "youtubeid")
+                (dd (:video/youtubeid video))
 
-                 (dt "title")
-                 (dd (:video/title video))
+                (dt "title")
+                (dd (:video/title video))
 
-                 (dt "series")
-                 (dd (:video/series video))
+                (dt "series")
+                (dd (:video/series video))
 
-                 (dt "description")
-                 (dd (:video/description video)))
+                (dt "description")
+                (dd (:video/description video)))
                (mr2
-                 (link-to (coast/url-for ::index) "List"))
+                (link-to (coast/url-for ::index) "List"))
                (mr2
-                 (link-to (coast/url-for ::edit {::id id}) "Edit"))
+                (link-to (coast/url-for ::edit {::id id}) "Edit"))
                (mr2
-                 (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
+                (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
 
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}

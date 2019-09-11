@@ -3,7 +3,7 @@
 
 (defn change []
   (create-table :member
-    (text :email)
-    (text :display-name)
-    (text :password)
-    (timestamps)))
+                (text :email)
+                (text :display-name)
+                (text :password)
+                (timestamps)))

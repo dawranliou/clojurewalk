@@ -2,7 +2,6 @@
   (:require [coast]
             [components :refer [container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
 
-
 (defn index [request]
   (let [rows (coast/q '[:select *
                         :from series
@@ -43,24 +42,22 @@
                       (td
                        (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
 
-
 (defn view [request]
-  (let [id (-> request :params :series-id)
+  (let [id     (-> request :params :series-id)
         series (coast/fetch :series id)]
     (container {:mw 8}
-      (dl
-        (dt "slug")
-        (dd (:series/slug series))
+               (dl
+                (dt "slug")
+                (dd (:series/slug series))
 
-        (dt "title")
-        (dd (:series/title series)))
-      (mr2
-        (link-to (coast/url-for ::index) "List"))
-      (mr2
-        (link-to (coast/url-for ::edit {::id id}) "Edit"))
-      (mr2
-        (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
-
+                (dt "title")
+                (dd (:series/title series)))
+               (mr2
+                (link-to (coast/url-for ::index) "List"))
+               (mr2
+                (link-to (coast/url-for ::edit {::id id}) "Edit"))
+               (mr2
+                (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
 
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}
@@ -71,22 +68,20 @@
        (dt (str k))
        (dd v)])]])
 
-
 (defn build [request]
   (container {:mw 6}
-    (when (some? (:errors request))
-     (errors (:errors request)))
+             (when (some? (:errors request))
+               (errors (:errors request)))
 
-    (coast/form-for ::create
-      (label {:for "series/slug"} "slug")
-      (input {:type "text" :name "series/slug" :value (-> request :params :series/slug)})
+             (coast/form-for ::create
+                             (label {:for "series/slug"} "slug")
+                             (input {:type "text" :name "series/slug" :value (-> request :params :series/slug)})
 
-      (label {:for "series/title"} "title")
-      (input {:type "text" :name "series/title" :value (-> request :params :series/title)})
+                             (label {:for "series/title"} "title")
+                             (input {:type "text" :name "series/title" :value (-> request :params :series/title)})
 
-      (link-to (coast/url-for ::index) "Cancel")
-      (submit "New series"))))
-
+                             (link-to (coast/url-for ::index) "Cancel")
+                             (submit "New series"))))
 
 (defn create [request]
   (let [[_ errors] (-> (coast/validate (:params request) [[:required [:series/slug :series/title]]])
@@ -97,26 +92,24 @@
       (coast/redirect-to ::index)
       (build (merge request errors)))))
 
-
 (defn edit [request]
   (let [series (coast/fetch :series (-> request :params :series-id))]
     (container {:mw 6}
-      (when (some? (:errors request))
-        (errors (:errors request)))
+               (when (some? (:errors request))
+                 (errors (:errors request)))
 
-      (coast/form-for ::change series
-        (label {:for "series/slug"} "slug")
-        (input {:type "text" :name "series/slug" :value (:series/slug series)})
+               (coast/form-for ::change series
+                               (label {:for "series/slug"} "slug")
+                               (input {:type "text" :name "series/slug" :value (:series/slug series)})
 
-        (label {:for "series/title"} "title")
-        (input {:type "text" :name "series/title" :value (:series/title series)})
+                               (label {:for "series/title"} "title")
+                               (input {:type "text" :name "series/title" :value (:series/title series)})
 
-        (link-to (coast/url-for ::index) "Cancel")
-        (submit "Update series")))))
-
+                               (link-to (coast/url-for ::index) "Cancel")
+                               (submit "Update series")))))
 
 (defn change [request]
-  (let [series (coast/fetch :series (-> request :params :series-id))
+  (let [series     (coast/fetch :series (-> request :params :series-id))
         [_ errors] (-> (select-keys series [:series/id])
                        (merge (:params request))
                        (coast/validate [[:required [:series/id :series/slug :series/title]]])
@@ -126,7 +119,6 @@
     (if (nil? errors)
       (coast/redirect-to ::index)
       (edit (merge request errors)))))
-
 
 (defn delete [request]
   (let [[_ errors] (-> (coast/fetch :series (-> request :params :series-id))
