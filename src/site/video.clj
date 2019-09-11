@@ -23,9 +23,9 @@
        [:div.cf.mv3
         [:h2.f3.mono.bg-green-cw.pa4 (str "> " title " (" (count videos) " episodes)")]
         [:div.flex.flex-column.flex-row-l.justify-between
-         (for [{:video/keys [title youtubeid]} (take 2 videos)]
+         (for [{:video/keys [title youtubeid] :as video} (take 2 videos)]
            (card title
-                 (coast/url-for :site.video/player {:youtubeid youtubeid})
+                 (coast/url-for :site.video/player video)
                  {:background-image (str "background-image: url(https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg)")}))
          (card "Watch series >>" (coast/url-for ::series series) {})]]))))
 
@@ -48,14 +48,14 @@
          (for [{:video/keys [title youtubeid] :as video} row]
            (if video
              (card title
-                   (coast/url-for :site.video/player {:youtubeid youtubeid})
+                   (coast/url-for :site.video/player video)
                    {:background-image (str "background-image: url(https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg)")})
              [:div.fl.w-100.h5.w-30-l.dt
               [:p.dtc.v-mid.tc "🎉🎉🎉"]]))])])))
 
 (defn player
   [request]
-  (let [youtubeid   (-> request :params :youtubeid)
+  (let [youtubeid   (-> request :params :video-youtubeid)
         row         (coast/pluck
                      '[:select * :from video :where [youtubeid ?youtubeid]]
                      {:youtubeid youtubeid})

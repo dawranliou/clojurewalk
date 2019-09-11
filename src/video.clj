@@ -2,29 +2,6 @@
   (:require [coast]
             [components :refer [container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
 
-(defn view [request]
-  (let [id    (-> request :params :video-id)
-        video (coast/fetch :video id)]
-    (container {:mw 8}
-               (dl
-                (dt "youtubeid")
-                (dd (:video/youtubeid video))
-
-                (dt "title")
-                (dd (:video/title video))
-
-                (dt "series")
-                (dd (:video/series video))
-
-                (dt "description")
-                (dd (:video/description video)))
-               (mr2
-                (link-to (coast/url-for :admin/dashboard) "List"))
-               (mr2
-                (link-to (coast/url-for ::edit {::id id}) "Edit"))
-               (mr2
-                (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
-
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}
    [:h2 {:class "f4 f-subheadline"} "Errors Detected"]

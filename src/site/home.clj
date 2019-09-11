@@ -23,17 +23,17 @@
        {:href (coast/url-for :site.video/index)}
        "videos"]
       ":"]
-     (for [{:video/keys [title youtubeid]} (coast/q '[:select *
-                                                      :from video
-                                                      :order id desc
-                                                      :limit 3])
-           :let                            [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
+     (for [{:video/keys [title youtubeid] :as video} (coast/q '[:select *
+                                                                :from video
+                                                                :order id desc
+                                                                :limit 3])
+           :let                                      [link (str "https://i.ytimg.com/vi/" youtubeid "/sddefault.jpg")]]
        [:div.cf.mv5
         [:img.fl.w-100.w-50-ns {:alt (str "The thumbnail of " title)
                                 :src link}]
         [:h2.fl.w-100.w-50-ns.ph3-ns
          [:a.link.dim.black-cw
-          {:href (coast/url-for :site.video/player {:youtubeid youtubeid})}
+          {:href (coast/url-for :site.video/player video)}
           title]]])
      [:p.f3.tc
       [:a.link.dim.black-cw.underline

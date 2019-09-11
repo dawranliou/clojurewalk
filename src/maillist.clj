@@ -2,23 +2,6 @@
   (:require [coast]
             [components :refer [container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
 
-(defn view [request]
-  (let [id       (-> request :params :maillist-id)
-        maillist (coast/fetch :maillist id)]
-    (container {:mw 8}
-               (dl
-                (dt "display-name")
-                (dd (:maillist/display-name maillist))
-
-                (dt "email")
-                (dd (:maillist/email maillist)))
-               (mr2
-                (link-to (coast/url-for :admin/dashboard) "List"))
-               (mr2
-                (link-to (coast/url-for ::edit {::id id}) "Edit"))
-               (mr2
-                (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
-
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}
    [:h2 {:class "f4 f-subheadline"} "Errors Detected"]

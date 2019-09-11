@@ -4,32 +4,6 @@
             [markdown.core :as markdown]
             [components :refer [submit-block textarea container tc link-to table thead tbody td th tr button-to text-muted mr2 dl dd dt submit input label]]))
 
-(defn view [request]
-  (let [id   (-> request :params :post-id)
-        post (coast/fetch :post id)]
-    (container {:mw 8}
-               (dl
-                (dt "member")
-                (dd (:post/member post))
-
-                (dt "body")
-                (dd (:post/body post))
-
-                (dt "published-at")
-                (dd (:post/published-at post))
-
-                (dt "slug")
-                (dd (:post/slug post))
-
-                (dt "title")
-                (dd (:post/title post)))
-               (mr2
-                (link-to (coast/url-for :admin/dashboard) "List"))
-               (mr2
-                (link-to (coast/url-for ::edit {::id id}) "Edit"))
-               (mr2
-                (button-to (coast/action-for ::delete {::id id}) {:data-confirm "Are you sure?"} "Delete")))))
-
 (defn errors [m]
   [:div {:class "bg-red white pa2 mb4 br1"}
    [:h2 {:class "f4 f-subheadline"} "Errors Detected"]

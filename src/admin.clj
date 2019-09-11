@@ -77,7 +77,7 @@
            (td (:series/slug row))
            (td (:series/title row))
            (td
-            (link-to (coast/url-for :series/view row) "View"))
+            (link-to (coast/url-for :site.video/series row) "View"))
            (td
             (link-to (coast/url-for :series/edit row) "Edit"))
            (td
@@ -112,7 +112,7 @@
            (td (:video/title row))
            (td (:video/series row))
            (td
-            (link-to (coast/url-for :video/view row) "View"))
+            (link-to (coast/url-for :site.video/player row) "View"))
            (td
             (link-to (coast/url-for :video/edit row) "Edit"))
            (td
@@ -133,7 +133,6 @@
          (th "display-name")
          (th "email")
          (th "")
-         (th "")
          (th "")))
        (tbody
         (for [row maillist]
@@ -143,8 +142,6 @@
            (td (:maillist/updated-at row))
            (td (:maillist/display-name row))
            (td (:maillist/email row))
-           (td
-            (link-to (coast/url-for :maillist/view row) "View"))
            (td
             (link-to (coast/url-for :maillist/edit row) "Edit"))
            (td
@@ -179,7 +176,7 @@
            (td (:post/slug row))
            (td (:post/title row))
            (td
-            (link-to (coast/url-for :post/view row) "View"))
+            (link-to (coast/url-for :site.article/reader row) "View"))
            (td
             (link-to (coast/url-for :post/edit row) "Edit"))
            (td
