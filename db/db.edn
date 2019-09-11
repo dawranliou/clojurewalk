@@ -1,6 +1,7 @@
 {:dev {:database "clojurewalk_dev.sqlite3"
        :adapter  "sqlite"
-       :debug    true}
+       ;;:debug    true
+       }
 
  :test {:database "clojurewalk_test.sqlite3"
         :adapter  "sqlite"}
