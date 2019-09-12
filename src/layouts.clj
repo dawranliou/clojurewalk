@@ -1,6 +1,11 @@
 (ns layouts
-  (:require components
+  (:require coast
+            components
             [hiccup.page :refer [doctype]]))
+
+(def google-analytics
+  "Sorry I need to understand my traffic."
+  "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-96109475-4\"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-96109475-4');</script>")
 
 (defn layout [request body & scripts]
   (list
@@ -36,6 +41,7 @@
      [:meta {:name "msapplication-TileColor" :content "#ffffff"}]
      [:meta {:name "msapplication-TileImage" :content "/ms-icon-144x144.png"}]
      [:meta {:name "theme-color" :content "#ffffff"}]
+     (coast/raw google-analytics)
      (coast/css "bundle.css")
      (coast/js "bundle.js")
      [:body.bg-black-cw.sans-serif
